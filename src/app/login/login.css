@@ -1,0 +1,61 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f2f5f9;
+}
+
+/* Center everything */
+.login-box {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Form container */
+form {
+  width: 320px;
+  padding: 25px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+}
+
+input:focus {
+  border-color: #4a90e2;
+}
+
+/* Button */
+button {
+  padding: 10px;
+  background: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #357bd8;
+}

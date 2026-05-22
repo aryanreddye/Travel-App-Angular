@@ -6,13 +6,29 @@
     <label for="email">EMAIL</label>
     <input type="email" [(ngModel)]="email" name="email" placeholder="Enter email">
     <p class="error" *ngIf="emailError">{{emailError}}</p>
-    
+
     <label for="password">PASSWORD</label>
     <input type="password" [(ngModel)]="password" name="password" placeholder="Enter password">
 
     <p class="error" *ngIf="passwordError">{{passwordError}}</p>
 
     <button type="submit">Login</button>
+
   </form>
 
+  <form>
+    <h2>Signup</h2>
+
+    <label for="email">EMAIL</label>
+    <input type="email" [(ngModel)]="email" name="email" >
+    <p class="error" *ngIf="emailError">{{emailError}}</p>
+
+     <label for="password">PASSWORD</label>
+    <input type="password" [(ngModel)]="password" name="password" placeholder="Enter password">
+
+    <p class="error" *ngIf="passwordError">{{passwordError}}</p>
+
+    <button type="submit">Signup</button>
+  </form>
+     
 </div>  

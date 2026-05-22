@@ -13,34 +13,81 @@ export class Login {
 
   email: string = '';
   password: string = '';
+  name: string = '';
+  phone: string = '';
+  signupEmail: string = '';
+  signupPassword: string = '';
 
   emailError = "";
-passwordError = "";
+  passwordError = "";
+  nameError = "";
+  phoneError = "";
+  signupEmailError = "";
+  signupPasswordError = "";
+  isLoginForm = true;
 
-login() {
-
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
-
-  this.emailError = "";
-  this.passwordError = "";
-
-  if (this.email == "" || this.password == "") {
-    this.emailError = "empty";
-    this.passwordError = "empty";
+  showLogin() {
+    this.isLoginForm = true;
   }
 
-  else if (!emailPattern.test(this.email)) {
-    this.emailError = "Invalid email format";
+  showSignup() {
+    this.isLoginForm = false;
   }
 
-  else if (!passwordPattern.test(this.password)) {
-    this.passwordError = "Password must have 1 uppercase, 1 number, 1 special character";
-  }
+  login() {
 
-  else {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.com$/;
+    const passwordPattern =/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
+
     this.emailError = "";
     this.passwordError = "";
-    alert("Login Successful!");
+
+    if (this.email == "" || this.password == "") {
+      this.emailError = "Fields cannot be empty";
+      this.passwordError = "Fields cannot be empty";
+    }
+    else if (!emailPattern.test(this.email)) {
+      this.emailError = "Invalid email format";
+    }
+    else if (!passwordPattern.test(this.password)) {
+      this.passwordError =
+        "Password must contain uppercase, number and special character";
+    }
+    else {
+      alert("Login Successful!");
+    }
   }
-}}
+  signup() {
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.com$/;
+    const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
+    const phonePattern = /^[0-9]{10}$/;
+    this.nameError = "";
+    this.phoneError = "";
+    this.signupEmailError = "";
+    this.signupPasswordError = "";
+
+    if (this.name == "" || this.phone == "" || this.signupEmail == "" || this.signupPassword == "")
+    {
+      this.nameError = "Fields cannot be empty";
+      this.phoneError = "Fields cannot be empty";
+      this.signupEmailError = "Fields cannot be empty";
+      this.signupPasswordError = "Fields cannot be empty";
+    }
+    else if (!phonePattern.test(this.phone)) {
+
+      this.phoneError = "Phone number must contain exactly 10 digits";
+    }
+    else if (!emailPattern.test(this.signupEmail)) {
+      this.signupEmailError = "Invalid email format";
+    }
+
+    else if (!passwordPattern.test(this.signupPassword)) {
+
+      this.signupPasswordError = "Password must contain uppercase, number and special character";
+    }
+    else {
+      alert("Signup Successful!");
+    }
+  }
+}

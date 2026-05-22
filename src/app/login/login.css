@@ -67,3 +67,19 @@ button:hover {
   justify-content: center;
   align-items: center;
 }
+
+.outbox {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+
+  position: absolute;
+  top: 20px;
+  left: 0;
+}
+
+.outbox button{
+  color: black;
+  background: beige;
+}

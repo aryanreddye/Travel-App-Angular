@@ -58,7 +58,6 @@ export class Login {
     }
   }
   signup() {
-
     const emailPattern = /^[^\s@]+@[^\s@]+\.com$/;
     const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
     const phonePattern = /^[0-9]{10}$/;
@@ -75,7 +74,6 @@ export class Login {
       this.signupPasswordError = "Fields cannot be empty";
     }
     else if (!phonePattern.test(this.phone)) {
-
       this.phoneError = "Phone number must contain exactly 10 digits";
     }
     else if (!emailPattern.test(this.signupEmail)) {
@@ -83,7 +81,6 @@ export class Login {
     }
 
     else if (!passwordPattern.test(this.signupPassword)) {
-
       this.signupPasswordError = "Password must contain uppercase, number and special character";
     }
     else {

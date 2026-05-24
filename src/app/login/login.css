@@ -92,3 +92,11 @@ input:-webkit-autofill {
   -webkit-text-fill-color: black !important;
   transition: background-color 5000s ease-in-out 0s;
 }
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}

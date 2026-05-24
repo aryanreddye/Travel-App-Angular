@@ -1,170 +1,112 @@
 
-
 <div class="login-box">
-
   <div class="outbox">
-
   <button mat-raised-button color="primary"
     type="button"
     (click)="showLogin()">
     Login
   </button>
-
   <button mat-raised-button color="accent"
     type="button"
     (click)="showSignup()">
     Signup
   </button>
-
 </div>
 
-  <!-- LOGIN FORM -->
-
   <mat-card *ngIf="isLoginForm">
-
     <form (ngSubmit)="login()">
-
       <h2>Login</h2>
-
       <mat-form-field appearance="outline">
-
   <mat-label>Email</mat-label>
-
-  <mat-icon matPrefix matTooltip="Email field">email</mat-icon>
-
+  <mat-icon matPrefix>email</mat-icon>
   <input
     matInput
     type="email"
     [(ngModel)]="email"
     name="loginEmail"
-    (blur)="validateLoginEmail()"
+    (blur)="emailvalidation()"
     matTooltip="Enter valid email like test@gmail.com">
-
   </mat-form-field>
-
       <p class="error" *ngIf="emailError">
         {{ emailError }}
       </p>
-
       <mat-form-field appearance="outline">
-
   <mat-label>Password</mat-label>
-
   <mat-icon matPrefix>lock</mat-icon>
-
   <input
     matInput
     type="password"
     [(ngModel)]="password"
     name="loginPassword"
-    (blur)="validateLoginPassword()"
+    (blur)="passwordvalidation()"
     matTooltip="Must contain uppercase, number, special char">
-
 </mat-form-field>
-
       <p class="error" *ngIf="passwordError">
         {{ passwordError }}
       </p>
-
       <button
         mat-raised-button
         color="primary"
-        type="submit"
-        >
-
+        type="submit">
         Login
-
       </button>
-
     </form>
-
   </mat-card>
 
 
-
-  <!-- SIGNUP FORM -->
-
   <mat-card *ngIf="!isLoginForm">
-
     <form (ngSubmit)="signup()">
-
       <h2>Signup</h2>
-
       <mat-form-field appearance="outline">
-
         <mat-label>Name</mat-label>
-
         <input
           matInput
           type="text"
           [(ngModel)]="name"
           name="name">
-
       </mat-form-field>
-
       <p class="error" *ngIf="nameError">
         {{ nameError }}
       </p>
-
       <mat-form-field appearance="outline">
-
         <mat-label>Phone</mat-label>
-
         <input
           matInput
           type="text"
           [(ngModel)]="phone"
           name="phone">
-
       </mat-form-field>
-
       <p class="error" *ngIf="phoneError">
         {{ phoneError }}
       </p>
-
       <mat-form-field appearance="outline">
-
         <mat-label>Email</mat-label>
-
         <input
           matInput
           type="email"
           [(ngModel)]="signupEmail"
           name="signupEmail">
-
       </mat-form-field>
-
       <p class="error" *ngIf="signupEmailError">
         {{ signupEmailError }}
       </p>
-
       <mat-form-field appearance="outline">
-
         <mat-label>Password</mat-label>
-
         <input
           matInput
           type="password"
           [(ngModel)]="signupPassword"
           name="signupPassword">
-
       </mat-form-field>
-
       <p class="error" *ngIf="signupPasswordError">
         {{ signupPasswordError }}
       </p>
-
       <button
         mat-raised-button
         color="accent"
         type="submit">
-
         Signup
-
       </button>
-
     </form>
-
   </mat-card>
-
 </div>

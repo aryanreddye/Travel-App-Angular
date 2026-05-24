@@ -5,6 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ import { MatCardModule } from '@angular/material/card';
   imports: [FormsModule, CommonModule, MatInputModule,
   MatFormFieldModule,
   MatButtonModule,
-  MatCardModule],
+  MatCardModule, MatIconModule],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
@@ -43,27 +44,50 @@ export class Login {
 
   login() {
 
-    const emailPattern = /^[^\s@]+@[^\s@]+\.com$/;
-    const passwordPattern =/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
+  // Step 1: validate fields
+  this.emailvalidation();
+  this.passwordvalidation();
 
+  // Step 2: check if any errors exist
+  if (this.emailError === "" && this.passwordError === "") {
+    alert("Login Successful!");
+  }
+}
+
+
+  emailvalidation() {
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  this.emailError = "";
+
+  if (this.email == "") {
+    this.emailError = "Fields cannot be empty";
+  }
+  else if (!emailPattern.test(this.email)) {
+    this.emailError = "Invalid email format";
+  }
+  else {
     this.emailError = "";
+  }
+}
+
+  passwordvalidation(){
+    const passwordPattern =/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
     this.passwordError = "";
 
-    if (this.email == "" || this.password == "") {
-      this.emailError = "Fields cannot be empty";
+    if (this.password == "") {
       this.passwordError = "Fields cannot be empty";
-    }
-    else if (!emailPattern.test(this.email)) {
-      this.emailError = "Invalid email format";
     }
     else if (!passwordPattern.test(this.password)) {
       this.passwordError =
         "Password must contain uppercase, number and special character";
     }
     else {
-      alert("Login Successful!");
-    }
+    this.passwordError = "";
   }
+  }
+
+
   signup() {
     const emailPattern = /^[^\s@]+@[^\s@]+\.com$/;
     const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/;

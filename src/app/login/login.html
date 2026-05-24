@@ -1,45 +1,170 @@
-<div class="outbox">
-<button type="button" (click)="showLogin()">Login</button>
-<button type="button" (click)="showSignup()">Signup</button>
-</div>
+
+
 <div class="login-box">
-  <form *ngIf="isLoginForm" (ngSubmit)="login()">
 
-    <h2>Login</h2>
+  <div class="outbox">
 
-    <label>Email</label>
-    <input type="email" [(ngModel)]="email" name="loginEmail">
-    <p class="error" *ngIf="emailError">{{ emailError }}</p>
+  <button mat-raised-button color="primary"
+    type="button"
+    (click)="showLogin()">
+    Login
+  </button>
 
-    <label>Password</label>
-    <input type="password" [(ngModel)]="password" name="loginPassword">
-    <p class="error" *ngIf="passwordError">{{ passwordError }}</p>
+  <button mat-raised-button color="accent"
+    type="button"
+    (click)="showSignup()">
+    Signup
+  </button>
 
-    <button type="submit">Login</button>
+</div>
 
-  </form>
-  <form *ngIf="!isLoginForm" (ngSubmit)="signup()">
+  <!-- LOGIN FORM -->
 
-    <h2>Signup</h2>
+  <mat-card *ngIf="isLoginForm">
 
-    <label>Name</label>
-    <input type="text" [(ngModel)]="name" name="name">
-    <p class="error" *ngIf="nameError">{{ nameError}}</p>
+    <form (ngSubmit)="login()">
 
-    <label>Phone</label>
-    <input type="text" [(ngModel)]="phone" name="phone">
-    <p class="error" *ngIf="phoneError">{{ phoneError }}</p>
+      <h2>Login</h2>
 
-    <label>Email</label>
-    <input type="email" [(ngModel)]="signupEmail" name="signupEmail">
-    <p class="error" *ngIf="signupEmailError">{{ signupEmailError }}</p>
+      <mat-form-field appearance="outline">
 
-    <label>Password</label>
-    <input type="password" [(ngModel)]="signupPassword" name="signupPassword">
-    <p class="error" *ngIf="signupPasswordError">{{ signupPasswordError }}</p>
+  <mat-label>Email</mat-label>
 
-    <button type="submit">Signup</button>
+  <mat-icon matPrefix matTooltip="Email field">email</mat-icon>
 
-  </form>
+  <input
+    matInput
+    type="email"
+    [(ngModel)]="email"
+    name="loginEmail"
+    (blur)="validateLoginEmail()"
+    matTooltip="Enter valid email like test@gmail.com">
+
+  </mat-form-field>
+
+      <p class="error" *ngIf="emailError">
+        {{ emailError }}
+      </p>
+
+      <mat-form-field appearance="outline">
+
+  <mat-label>Password</mat-label>
+
+  <mat-icon matPrefix>lock</mat-icon>
+
+  <input
+    matInput
+    type="password"
+    [(ngModel)]="password"
+    name="loginPassword"
+    (blur)="validateLoginPassword()"
+    matTooltip="Must contain uppercase, number, special char">
+
+</mat-form-field>
+
+      <p class="error" *ngIf="passwordError">
+        {{ passwordError }}
+      </p>
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        >
+
+        Login
+
+      </button>
+
+    </form>
+
+  </mat-card>
+
+
+
+  <!-- SIGNUP FORM -->
+
+  <mat-card *ngIf="!isLoginForm">
+
+    <form (ngSubmit)="signup()">
+
+      <h2>Signup</h2>
+
+      <mat-form-field appearance="outline">
+
+        <mat-label>Name</mat-label>
+
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="name"
+          name="name">
+
+      </mat-form-field>
+
+      <p class="error" *ngIf="nameError">
+        {{ nameError }}
+      </p>
+
+      <mat-form-field appearance="outline">
+
+        <mat-label>Phone</mat-label>
+
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="phone"
+          name="phone">
+
+      </mat-form-field>
+
+      <p class="error" *ngIf="phoneError">
+        {{ phoneError }}
+      </p>
+
+      <mat-form-field appearance="outline">
+
+        <mat-label>Email</mat-label>
+
+        <input
+          matInput
+          type="email"
+          [(ngModel)]="signupEmail"
+          name="signupEmail">
+
+      </mat-form-field>
+
+      <p class="error" *ngIf="signupEmailError">
+        {{ signupEmailError }}
+      </p>
+
+      <mat-form-field appearance="outline">
+
+        <mat-label>Password</mat-label>
+
+        <input
+          matInput
+          type="password"
+          [(ngModel)]="signupPassword"
+          name="signupPassword">
+
+      </mat-form-field>
+
+      <p class="error" *ngIf="signupPasswordError">
+        {{ signupPasswordError }}
+      </p>
+
+      <button
+        mat-raised-button
+        color="accent"
+        type="submit">
+
+        Signup
+
+      </button>
+
+    </form>
+
+  </mat-card>
 
 </div>

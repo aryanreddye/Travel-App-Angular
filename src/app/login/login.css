@@ -7,7 +7,6 @@ body {
   font-family: Arial, sans-serif;
 }
 
-/* MAIN CENTER CONTAINER */
 .login-box {
   height: 100vh;
 
@@ -17,7 +16,6 @@ body {
   align-items: center;
 }
 
-/* LOGIN / SIGNUP TOGGLE BUTTONS */
 .outbox {
   display: flex;
   justify-content: center;
@@ -26,7 +24,6 @@ body {
   margin-bottom: 15px;
 }
 
-/* TOGGLE BUTTON STYLE */
 .outbox button {
   padding: 10px 18px;
 
@@ -37,7 +34,7 @@ body {
 
   font-weight: bold;
 
-  background-color: #d4ba80;
+  background-color: #840d0d;
   color: black;
 
   transition: 0.3s;
@@ -47,7 +44,6 @@ body {
   background-color: #cfcfcf;
 }
 
-/* MATERIAL CARD */
 mat-card {
   width: 340px;
 
@@ -55,12 +51,11 @@ mat-card {
 
   border-radius: 16px;
 
-  background-color: #d4ba80;
+  background-color: #840d0d;
 
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
 }
 
-/* FORM INSIDE CARD */
 form {
   display: flex;
   flex-direction: column;
@@ -68,43 +63,38 @@ form {
   gap: 12px;
 }
 
-/* TITLE */
 h2 {
   text-align: center;
 
   margin-bottom: 10px;
 
-  color: #333;
+  color: #000000;
 }
 
-/* LABELS */
 label {
   font-size: 14px;
   font-weight: 600;
 
-  color: #9e095d;
+  color: #000000;
 }
 
-/* MATERIAL INPUT WIDTH */
 mat-form-field {
   width: 100%;
 }
 
-/* INPUT FIELD */
 input {
   font-size: 14px;
 }
 
-/* INPUT FOCUS */
-input:focus {
-  outline: none;
+
+mat-label {
+  color: #000000;
 }
 
-/* SUBMIT BUTTON */
 button[type="submit"] {
   padding: 12px;
 
-  background: #d537a8;
+  background: #000000;
   color: white;
 
   border: none;
@@ -117,12 +107,10 @@ button[type="submit"] {
   transition: 0.3s;
 }
 
-/* SUBMIT BUTTON HOVER */
 button[type="submit"]:hover {
   background: #b52b8b;
 }
 
-/* ERROR MESSAGE */
 .error {
   color: red;
 
@@ -131,7 +119,6 @@ button[type="submit"]:hover {
   margin-top: -8px;
 }
 
-/* AUTOFILL FIX */
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
 
@@ -140,7 +127,6 @@ input:-webkit-autofill {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-/* ICON COLOR */
 mat-icon {
-  color: #9e095d;
+  color: #000000;
 }

@@ -41,7 +41,7 @@ body {
 }
 
 .outbox button:hover {
-  background-color: #cfcfcf;
+  background-color: #650a0a;
 }
 
 mat-card {
@@ -108,7 +108,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background: #b52b8b;
+  background: #07d3a4;
 }
 
 .error {

@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 })
 export class Login {
 
-  constructor(private snackBar: MatSnackBar) {}
+  constructor(
+  private snackBar: MatSnackBar,
+  private router: Router
+) {}
 
   email: string = '';
   password: string = '';
@@ -54,9 +58,7 @@ export class Login {
 
   // Step 2: check if any errors exist
   if (this.emailError === "" && this.passwordError === "") {
-    this.snackBar.open("Login Successful!", "Close", {
-  duration: 3000
-});
+    this.router.navigate(['/dashboard']);
   }
 }
 

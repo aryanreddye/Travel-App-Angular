@@ -63,6 +63,7 @@
           matInput
           type="text"
           [(ngModel)]="name"
+          (blur)="namevalidation()"
           name="name">
       </mat-form-field>
       <p class="error" *ngIf="nameError">
@@ -74,6 +75,7 @@
           matInput
           type="text"
           [(ngModel)]="phone"
+          (blur)="phonevalidation()"
           name="phone">
       </mat-form-field>
       <p class="error" *ngIf="phoneError">
@@ -85,6 +87,7 @@
           matInput
           type="email"
           [(ngModel)]="signupEmail"
+          (blur)="signupemailvalidation()"
           name="signupEmail">
       </mat-form-field>
       <p class="error" *ngIf="signupEmailError">
@@ -96,6 +99,7 @@
           matInput
           type="password"
           [(ngModel)]="signupPassword"
+          (blur)="signuppasswordvalidation()"
           name="signupPassword">
       </mat-form-field>
       <p class="error" *ngIf="signupPasswordError">

@@ -6,6 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -13,11 +15,13 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [FormsModule, CommonModule, MatInputModule,
   MatFormFieldModule,
   MatButtonModule,
-  MatCardModule, MatIconModule],
+  MatCardModule, MatIconModule, MatSnackBarModule],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
 export class Login {
+
+  constructor(private snackBar: MatSnackBar) {}
 
   email: string = '';
   password: string = '';
@@ -50,7 +54,9 @@ export class Login {
 
   // Step 2: check if any errors exist
   if (this.emailError === "" && this.passwordError === "") {
-    alert("Login Successful!");
+    this.snackBar.open("Login Successful!", "Close", {
+  duration: 3000
+});
   }
 }
 
@@ -88,34 +94,83 @@ export class Login {
   }
 
 
-  signup() {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.com$/;
-    const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
-    const phonePattern = /^[0-9]{10}$/;
-    this.nameError = "";
-    this.phoneError = "";
-    this.signupEmailError = "";
-    this.signupPasswordError = "";
+  namevalidation() {
 
-    if (this.name == "" || this.phone == "" || this.signupEmail == "" || this.signupPassword == "")
-    {
-      this.nameError = "Fields cannot be empty";
-      this.phoneError = "Fields cannot be empty";
-      this.signupEmailError = "Fields cannot be empty";
-      this.signupPasswordError = "Fields cannot be empty";
-    }
-    else if (!phonePattern.test(this.phone)) {
-      this.phoneError = "Phone number must contain exactly 10 digits";
-    }
-    else if (!emailPattern.test(this.signupEmail)) {
-      this.signupEmailError = "Invalid email format";
-    }
+  this.nameError = "";
 
-    else if (!passwordPattern.test(this.signupPassword)) {
-      this.signupPasswordError = "Password must contain uppercase, number and special character";
-    }
-    else {
-      alert("Signup Successful!");
-    }
+  if (this.name == "") {
+    this.nameError = "Name cannot be empty";
   }
+
+}
+
+phonevalidation() {
+
+  const phonePattern = /^[0-9]{10}$/;
+
+  this.phoneError = "";
+
+  if (this.phone == "") {
+    this.phoneError = "Phone cannot be empty";
+  }
+
+  else if (!phonePattern.test(this.phone)) {
+    this.phoneError = "Phone must contain exactly 10 digits";
+  }
+
+}
+
+signupemailvalidation() {
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.com$/;
+
+  this.signupEmailError = "";
+
+  if (this.signupEmail == "") {
+    this.signupEmailError = "Email cannot be empty";
+  }
+
+  else if (!emailPattern.test(this.signupEmail)) {
+    this.signupEmailError = "Invalid email format";
+  }
+
+}
+
+signuppasswordvalidation() {
+
+  const passwordPattern =
+    /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
+
+  this.signupPasswordError = "";
+
+  if (this.signupPassword == "") {
+    this.signupPasswordError = "Password cannot be empty";
+  }
+
+  else if (!passwordPattern.test(this.signupPassword)) {
+
+    this.signupPasswordError =
+      "Password must contain uppercase, number and special character";
+
+  }
+
+}
+
+
+  signup() {
+
+  this.namevalidation();
+  this.phonevalidation();
+  this.signupemailvalidation();
+  this.signuppasswordvalidation();
+
+  if (this.nameError == "" && this.phoneError == "" && this.signupEmailError == "" &&
+    this.signupPasswordError == "") {
+      this.snackBar.open("Signup Successful!", "Close", {
+      duration: 3000
+    });
+
+  }
+
+}
 }

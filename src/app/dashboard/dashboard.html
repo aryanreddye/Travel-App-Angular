@@ -1,23 +1,20 @@
 <mat-toolbar>
-
   <button mat-icon-button>
     <mat-icon>menu</mat-icon>
   </button>
 
   <span class="toolbar-title">Travel Dashboard</span>
-
 </mat-toolbar>
 
 <div class="dashboard">
 
+  <!-- CARDS -->
   <div class="card-container">
 
-    <mat-card class="dashboard-card">
-
+    <mat-card class="dashboard-card" (click)="showSection('flights')">
       <img src="flight.avif" alt="flight">
 
       <div class="card-overlay">
-
         <div class="hover-text">
           <h3>Flights</h3>
           <p>Plan your next adventure</p>
@@ -26,26 +23,24 @@
       </div>
     </mat-card>
 
-    <mat-card class="dashboard-card">
 
+    <mat-card class="dashboard-card" (click)="showSection('hotels')">
       <img src="hotel.webp" alt="hotel">
 
       <div class="card-overlay">
-
         <div class="hover-text">
           <h3>Hotels</h3>
-          <p>Luxury Stay, Luxury Comfort</p>
+          <p>Luxury Stay</p>
         </div>
         <mat-icon>hotel</mat-icon>
       </div>
     </mat-card>
 
-    <mat-card class="dashboard-card">
 
+    <mat-card class="dashboard-card" (click)="showSection('trains')">
       <img src="trains.webp" alt="train">
 
       <div class="card-overlay">
-
         <div class="hover-text">
           <h3>Trains</h3>
           <p>Travel Across Cities</p>
@@ -53,5 +48,151 @@
         <mat-icon>train</mat-icon>
       </div>
     </mat-card>
+
   </div>
+
+
+  <!-- DETAILS SECTION (OUTSIDE GRID) -->
+
+  <div class="details-wrapper">
+
+    <div class="details-section" *ngIf="selectedSection === 'flights'">
+
+      <h2>Available Flights</h2>
+
+      <div class="detail-card">
+        <mat-icon>flight</mat-icon>
+        <div class="details">
+          <h3>Indigo 6E 231</h3>
+          <p>Hyderabad → Delhi</p>
+          <small>Departure: 10:30 AM</small>
+          <small>Arrival: 12:45 PM</small>
+        </div>
+
+        <button mat-raised-button color="primary">Book</button>
+      </div>
+      <div class="detail-card">
+        <mat-icon>flight</mat-icon>
+        <div class="details">
+          <h3>Indigo 6E 231</h3>
+          <p>Hyderabad → Delhi</p>
+          <small>Departure: 10:30 AM</small>
+          <small>Arrival: 12:45 PM</small>
+        </div>
+
+        <button mat-raised-button color="primary">Book</button>
+      </div>
+      <div class="detail-card">
+        <mat-icon>flight</mat-icon>
+        <div class="details">
+          <h3>Indigo 6E 231</h3>
+          <p>Hyderabad → Delhi</p>
+          <small>Departure: 10:30 AM</small>
+          <small>Arrival: 12:45 PM</small>
+        </div>
+
+        <button mat-raised-button color="primary">Book</button>
+      </div>
+      <div class="detail-card">
+        <mat-icon>flight</mat-icon>
+        <div class="details">
+          <h3>Indigo 6E 231</h3>
+          <p>Hyderabad → Delhi</p>
+          <small>Departure: 10:30 AM</small>
+          <small>Arrival: 12:45 PM</small>
+        </div>
+
+        <button mat-raised-button color="primary">Book</button>
+      </div>
+      
+
+    </div>
+
+
+    <div class="details-section" *ngIf="selectedSection === 'hotels'">
+
+      <h2>Hotels</h2>
+
+      <div class="detail-card">
+        <mat-icon>hotel</mat-icon>
+
+        <div class="details">
+          <h3>Taj Palace</h3>
+          <p>5 Star Luxury Hotel</p>
+          <small>₹8,500/night</small>
+        </div>
+
+        <button mat-raised-button color="accent">Book</button>
+      </div>
+      <div class="detail-card">
+        <mat-icon>hotel</mat-icon>
+
+        <div class="details">
+          <h3>Taj Palace</h3>
+          <p>5 Star Luxury Hotel</p>
+          <small>₹8,500/night</small>
+        </div>
+
+        <button mat-raised-button color="accent">Book</button>
+      </div>
+      <div class="detail-card">
+        <mat-icon>hotel</mat-icon>
+
+        <div class="details">
+          <h3>Taj Palace</h3>
+          <p>5 Star Luxury Hotel</p>
+          <small>₹8,500/night</small>
+        </div>
+
+        <button mat-raised-button color="accent">Book</button>
+      </div>
+
+    </div>
+
+
+    <div class="details-section" *ngIf="selectedSection === 'trains'">
+
+      <h2>Available Trains</h2>
+
+      <div class="detail-card">
+        <mat-icon>train</mat-icon>
+
+        <div class="details">
+          <h3>Rajdhani Express</h3>
+          <p>Delhi → Hyderabad</p>
+          <small>7:00 PM</small>
+          <small>8:00 AM</small>
+        </div>
+
+        <button mat-raised-button color="warn">Book</button>
+      </div>
+      <div class="detail-card">
+        <mat-icon>train</mat-icon>
+
+        <div class="details">
+          <h3>Rajdhani Express</h3>
+          <p>Delhi → Hyderabad</p>
+          <small>7:00 PM</small>
+          <small>8:00 AM</small>
+        </div>
+
+        <button mat-raised-button color="warn">Book</button>
+      </div>
+      <div class="detail-card">
+        <mat-icon>train</mat-icon>
+
+        <div class="details">
+          <h3>Rajdhani Express</h3>
+          <p>Delhi → Hyderabad</p>
+          <small>7:00 PM</small>
+          <small>8:00 AM</small>
+        </div>
+
+        <button mat-raised-button color="warn">Book</button>
+      </div>
+
+    </div>
+
+  </div>
+
 </div>

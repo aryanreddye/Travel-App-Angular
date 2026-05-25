@@ -21,4 +21,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   styleUrl: './dashboard.css',
 })
 
-export class Dashboard {}
+export class Dashboard {
+  selectedSection = '';
+
+  showSection(section: string) {
+    this.selectedSection = section;
+  }
+}

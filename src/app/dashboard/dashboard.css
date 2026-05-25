@@ -1,10 +1,10 @@
 .dashboard {
   min-height: 100vh;
-  background: #f5f5f5;
+  background: #000000;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
-
-/* TOOLBAR */
 
 mat-toolbar {
   display: flex;
@@ -30,7 +30,6 @@ mat-toolbar {
   font-weight: bold;
 }
 
-/* GRID */
 
 .card-container {
   display: grid;
@@ -42,7 +41,6 @@ mat-toolbar {
   margin-top: 30px;
 }
 
-/* CARD */
 
 .dashboard-card {
   position: relative;
@@ -66,7 +64,6 @@ mat-toolbar {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-/* IMAGE */
 
 .dashboard-card img {
   width: 100%;
@@ -76,8 +73,6 @@ mat-toolbar {
 
   display: block;
 }
-
-/* OVERLAY */
 
 .card-overlay {
   position: absolute;
@@ -90,7 +85,6 @@ mat-toolbar {
   gap: 12px;
 }
 
-/* ICON */
 
 .card-overlay mat-icon {
   font-size: 34px;
@@ -109,7 +103,6 @@ mat-toolbar {
   backdrop-filter: blur(5px);
 }
 
-/* HOVER TEXT */
 
 .hover-text {
   opacity: 0;
@@ -139,4 +132,110 @@ mat-toolbar {
   opacity: 1;
 
   transform: translateX(0);
+}
+
+.list-box {
+  margin-top: 30px;
+
+  background: white;
+
+  padding: 20px;
+
+  border-radius: 14px;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 12px 0;
+
+  border-bottom: 1px solid #ddd;
+}
+
+.list-item mat-icon {
+  color: #840808;
+}
+
+.details-section {
+  margin-top: 40px;
+
+  background: white;
+
+  padding: 25px;
+
+  border-radius: 16px;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.details-section h2 {
+  margin-bottom: 25px;
+
+  color: #840808;
+}
+
+.detail-card {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 20px;
+
+  border-radius: 12px;
+
+  background: #f8f8f8;
+
+  margin-bottom: 20px;
+
+  transition: 0.3s ease;
+}
+
+.detail-card:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+.detail-card mat-icon {
+  font-size: 40px;
+
+  width: 40px;
+  height: 40px;
+
+  color: #840808;
+}
+
+.details {
+  flex: 1;
+}
+
+.details h3 {
+  margin: 0;
+}
+
+.details p {
+  margin: 6px 0;
+  font-weight: 500;
+}
+
+.details small {
+  display: block;
+
+  color: gray;
+
+  margin-top: 4px;
+}
+
+.details-wrapper {
+  margin-top: 30px;
+  width: 100%;
 }

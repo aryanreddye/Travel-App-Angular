@@ -52,11 +52,9 @@ export class Login {
 
   login() {
 
-  // Step 1: validate fields
   this.emailvalidation();
   this.passwordvalidation();
 
-  // Step 2: check if any errors exist
   if (this.emailError === "" && this.passwordError === "") {
     this.router.navigate(['/dashboard']);
   }
@@ -168,10 +166,7 @@ signuppasswordvalidation() {
 
   if (this.nameError == "" && this.phoneError == "" && this.signupEmailError == "" &&
     this.signupPasswordError == "") {
-      this.snackBar.open("Signup Successful!", "Close", {
-      duration: 3000
-    });
-
+      this.router.navigate(['/dashboard']);
   }
 
 }

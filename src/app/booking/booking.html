@@ -1,0 +1,169 @@
+
+<div class="booking-page">
+
+  <!-- FLIGHTS -->
+  <div *ngIf="bookingType === 'flights'" class="booking-card">
+
+    <h2>✈ Flight Booking</h2>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Passenger Name</mat-label>
+
+      <input
+        matInput
+        [(ngModel)]="passengerName">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Number of Tickets</mat-label>
+
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="ticketCount">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+
+      <mat-label>Date of Journey</mat-label>
+
+      <input
+        matInput
+        [matDatepicker]="picker"
+        [(ngModel)]="selectedDate">
+
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker">
+      </mat-datepicker-toggle>
+
+      <mat-datepicker #picker></mat-datepicker>
+
+    </mat-form-field>
+
+    <div class="price">
+      Estimated Price: ₹4500 per ticket
+    </div>
+
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="confirmBooking()">
+
+      Book Ticket
+
+    </button>
+
+  </div>
+
+  <!-- HOTELS -->
+  <div *ngIf="bookingType === 'hotels'" class="booking-card">
+
+    <h2>🏨 Hotel Booking</h2>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Guest Name</mat-label>
+
+      <input
+        matInput
+        [(ngModel)]="passengerName">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Number of Rooms</mat-label>
+
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="ticketCount">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+
+      <mat-label>Check-in Date</mat-label>
+
+      <input
+        matInput
+        [matDatepicker]="checkin"
+        [(ngModel)]="selectedDate">
+
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="checkin">
+      </mat-datepicker-toggle>
+
+      <mat-datepicker #checkin></mat-datepicker>
+
+    </mat-form-field>
+
+    <div class="price">
+      Starting Price: ₹2500 / night
+    </div>
+
+    <button
+      mat-raised-button
+      color="accent"
+      (click)="confirmBooking()">
+
+      Confirm Booking
+
+    </button>
+
+  </div>
+
+  <!-- TRAINS -->
+  <div *ngIf="bookingType === 'trains'" class="booking-card">
+
+    <h2>🚆 Train Booking</h2>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Passenger Name</mat-label>
+
+      <input
+        matInput
+        [(ngModel)]="passengerName">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>No of Tickets</mat-label>
+
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="ticketCount">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+
+      <mat-label>Date of Journey</mat-label>
+
+      <input
+        matInput
+        [matDatepicker]="trainpicker"
+        [(ngModel)]="selectedDate">
+
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="trainpicker">
+      </mat-datepicker-toggle>
+
+      <mat-datepicker #trainpicker></mat-datepicker>
+
+    </mat-form-field>
+
+    <div class="price">
+      Estimated Price: ₹800 per ticket
+    </div>
+
+    <button
+      mat-raised-button
+      color="warn"
+      (click)="confirmBooking()">
+
+      Confirm Booking
+
+    </button>
+
+  </div>
+
+</div>

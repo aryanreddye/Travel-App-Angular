@@ -30,12 +30,27 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
+
 export class Dashboard {
 
   selectedSection = '';
   showOrders = false;
 
   orders: any[] = [];
+
+  constructor() {}
+
+  ngOnInit() {
+
+    const data = history.state?.order;
+    console.log(data);
+
+    if (data) {
+      this.orders.push(data);
+    }
+
+  }
+  
 
   toggleOrders() {
     this.showOrders = !this.showOrders;
@@ -44,15 +59,4 @@ export class Dashboard {
   showSection(section: string) {
     this.selectedSection = section;
   }
-
-  
-ngOnInit() {
-
-  const data = history.state.order;
-
-  if (data) {
-    this.orders.push(data);
-  }
-
 }
-  }

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
@@ -23,14 +22,13 @@ import { FormsModule } from '@angular/forms';
     MatCardModule,
     MatIconModule,
     MatDatepickerModule,
-    MatNativeDateModule, FormsModule
+    MatNativeDateModule,
+    FormsModule,
   ],
   templateUrl: './booking.html',
   styleUrl: './booking.css',
 })
-
 export class Booking {
-
   bookingType = '';
 
   passengerName = '';
@@ -44,20 +42,14 @@ export class Booking {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) {}
 
   ngOnInit() {
-
-    this.bookingType =
-      this.route.snapshot.paramMap.get('type') || '';
-
+    this.bookingType = this.route.snapshot.paramMap.get('type') || '';
   }
 
   confirmBooking() {
-
-    // PRICE CALCULATION
-
     if (this.bookingType === 'flights') {
       this.totalPrice = this.ticketCount * 4500;
     }
@@ -70,10 +62,7 @@ export class Booking {
       this.totalPrice = this.ticketCount * 2500;
     }
 
-    // CREATE ORDER OBJECT
-
     const order = {
-
       type: this.bookingType,
 
       name: this.passengerName,
@@ -82,30 +71,15 @@ export class Booking {
 
       date: this.selectedDate,
 
-      price: this.totalPrice
-
+      price: this.totalPrice,
     };
 
-    // SUCCESS MESSAGE
+    this.snackBar.open('Booking Successful 🎉', 'Close', {
+      duration: 2000,
+    });
 
-    this.snackBar.open(
-      'Booking Successful 🎉',
-      'Close',
-      {
-        duration: 2000
-      }
-    );
-
-    // NAVIGATE TO DASHBOARD
-
-    this.router.navigate(
-      ['/dashboard'],
-      {
-        state: { order }
-      }
-    );
-
+    this.router.navigate(['/dashboard'], {
+      state: { order },
+    });
   }
-
 }
-    

@@ -1,7 +1,6 @@
 
 <mat-toolbar class="toolbar">
 
-  <!-- ORDERS BUTTON -->
   <button mat-raised-button color="accent" (click)="toggleOrders()">
     <mat-icon>list</mat-icon>
     Orders
@@ -14,7 +13,6 @@
 <div class="dashboard">
 
   
-<!-- ORDERS PANEL -->
 <div class="orders-panel" *ngIf="showOrders">
 
   <h3>📦 My Orders</h3>
@@ -49,7 +47,6 @@
 
 </div>
 
-  <!-- CARDS -->
   <div class="card-container">
 
     <mat-card class="dashboard-card" (click)="showSection('flights')">
@@ -90,10 +87,10 @@
 
   </div>
 
-  <!-- DETAILS WRAPPER -->
+  
   <div class="details-wrapper">
 
-    <!-- FLIGHTS -->
+    
     <div class="details-section" *ngIf="selectedSection === 'flights'">
 
       <h2>Available Flights</h2>
@@ -115,8 +112,8 @@
       <div class="detail-card">
         <mat-icon>flight</mat-icon>
         <div>
-          <h3>Air India AI 502</h3>
-          <p>Mumbai → Chennai</p>
+          <h3>Air India AI 787</h3>
+          <p>Mumbai → Hyderabad</p>
           <small>4:15 PM → 6:20 PM</small>
         </div>
 
@@ -126,9 +123,37 @@
         </button>
       </div>
 
-    </div>
+      <div class="detail-card">
+        <mat-icon>flight</mat-icon>
+        <div>
+          <h3>ReddyFisher 9A 257</h3>
+          <p>Dubai → Kochi</p>
+          <small>4:15 PM → 6:20 PM</small>
+        </div>
 
-    <!-- HOTELS -->
+        <button mat-raised-button color="primary"
+          [routerLink]="['/booking','flights']">
+          Book
+        </button>
+      </div>
+
+
+      <div class="detail-card">
+        <mat-icon>flight</mat-icon>
+        <div>
+          <h3>Spice Jet S5 502</h3>
+          <p>Mumbai → Chennai</p>
+          <small>5:15 PM → 8:20 PM</small>
+        </div>
+
+        <button mat-raised-button color="primary"
+          [routerLink]="['/booking','flights']">
+          Book
+        </button>
+      </div>
+
+
+    </div>
     <div class="details-section" *ngIf="selectedSection === 'hotels'">
 
       <h2>Hotels</h2>
@@ -139,7 +164,7 @@
         <div>
           <h3>Taj Palace</h3>
           <p>5 Star Luxury Hotel</p>
-          <small>₹8,500/night</small>
+          <small>₹28,500/night</small>
         </div>
 
         <button mat-raised-button color="accent"
@@ -154,7 +179,37 @@
         <div>
           <h3>Marriott</h3>
           <p>Premium Stay</p>
-          <small>₹6,200/night</small>
+          <small>₹36,200/night</small>
+        </div>
+
+        <button mat-raised-button color="accent"
+          [routerLink]="['/booking','hotels']">
+          Book
+        </button>
+      </div>
+
+      <div class="detail-card">
+        <mat-icon>hotel</mat-icon>
+
+        <div>
+          <h3>Reddylton Hotel</h3>
+          <p>5 Star Luxury Hotel</p>
+          <small>₹49,999/night</small>
+        </div>
+
+        <button mat-raised-button color="accent"
+          [routerLink]="['/booking','hotels']">
+          Book
+        </button>
+      </div>
+
+      <div class="detail-card">
+        <mat-icon>hotel</mat-icon>
+
+        <div>
+          <h3>Saket Bhusatva</h3>
+          <p>5 Star Luxury Hotel</p>
+          <small>₹38,499/night</small>
         </div>
 
         <button mat-raised-button color="accent"
@@ -192,6 +247,34 @@
           <h3>Vande Bharat</h3>
           <p>Hyderabad → Chennai</p>
           <small>6:00 AM → 2:00 PM</small>
+        </div>
+
+        <button mat-raised-button color="warn"
+          [routerLink]="['/booking','trains']">
+          Book
+        </button>
+        </div>
+
+        <div class="detail-card">
+        <mat-icon>train</mat-icon>
+        <div>
+          <h3>Milenium Falcon</h3>
+          <p>Hyderabad → Tantooine</p>
+          <small>7:00 PM → 8:00 PM</small>
+        </div>
+
+        <button mat-raised-button color="warn"
+          [routerLink]="['/booking','trains']">
+          Book
+        </button>
+      </div>
+
+      <div class="detail-card">
+        <mat-icon>train</mat-icon>
+      <div>
+          <h3>Hogwarts 9 3/4 Express</h3>
+          <p>Hyderabad → Hogwarts</p>
+          <small>7:00 PM → 8:00 AM</small>
         </div>
 
         <button mat-raised-button color="warn"

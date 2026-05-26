@@ -235,3 +235,107 @@ mat-toolbar {
   color: gray;
   margin-top: 3px;
 }
+.section {
+  margin-top: 50px;
+}
+
+.section-title {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+/* TOP PLACES */
+
+.places-carousel {
+  display: flex;
+  gap: 20px;
+
+  overflow-x: auto;
+  padding-bottom: 10px;
+
+  scroll-behavior: smooth;
+}
+
+.place-card {
+  min-width: 260px;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  flex-shrink: 0;
+
+  transition: 0.3s ease;
+
+  cursor: pointer;
+}
+
+.place-card:hover {
+  transform: translateY(-5px);
+}
+
+.place-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.place-info {
+  padding: 15px;
+}
+
+.place-info h3 {
+  margin: 0;
+}
+
+.place-info p {
+  margin-top: 6px;
+  color: gray;
+}
+
+/* DEALS */
+
+.deals-grid {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+  gap: 20px;
+}
+
+.deal-card {
+  padding: 25px;
+
+  border-radius: 16px;
+
+  transition: 0.3s ease;
+
+  cursor: pointer;
+
+  background: white;
+}
+
+.deal-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.deal-card h3 {
+  margin-top: 0;
+}
+
+.deal-card p {
+  color: gray;
+}
+
+.deal-card h2 {
+  color: #840808;
+  margin: 15px 0 5px;
+}
+
+.deal-card small {
+  color: green;
+  font-weight: bold;
+}

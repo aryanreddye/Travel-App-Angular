@@ -1,0 +1,46 @@
+.payment-page{
+  display:flex;
+  gap:30px;
+  padding:30px;
+  background:#f4f7fb;
+  min-height:100vh;
+}
+
+.tickets-section{
+  flex:2;
+}
+
+.summary-section{
+  flex:1;
+}
+
+.ticket-card{
+  margin-bottom:20px;
+  padding:20px;
+  border-radius:20px;
+}
+
+.summary-card{
+  padding:25px;
+  border-radius:20px;
+  position:sticky;
+  top:20px;
+}
+
+.summary-row{
+  display:flex;
+  justify-content:space-between;
+  margin:15px 0;
+}
+
+.total-row{
+  font-size:22px;
+  font-weight:bold;
+}
+
+.checkout-btn{
+  width:100%;
+  margin-top:20px;
+  height:50px;
+  border-radius:12px;
+}

@@ -1,167 +1,113 @@
-
 <div class="booking-page">
 
-  <div *ngIf="bookingType === 'flights'" class="booking-card">
+  <!-- LEFT -->
+  <div class="search-box">
 
-    <h2>✈ Flight Booking</h2>
+    <h1>Explore The World 🌍</h1>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Passenger Name</mat-label>
+    <!-- FLIGHTS ONLY (clean UI) -->
+    <ng-container *ngIf="selectedType === 'flights'">
 
-      <input
-        matInput
-        [(ngModel)]="passengerName">
-    </mat-form-field>
+      <div class="search-row">
+        <mat-form-field appearance="outline">
+          <mat-label>From</mat-label>
+          <mat-select [(ngModel)]="fromPlace">
+            <mat-option value="Hyderabad">Hyderabad</mat-option>
+            <mat-option value="Delhi">Delhi</mat-option>
+            <mat-option value="Mumbai">Mumbai</mat-option>
+            <mat-option value="Chennai">Chennai</mat-option>
+          </mat-select>
+        </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Number of Tickets</mat-label>
+        <mat-form-field appearance="outline">
+          <mat-label>To</mat-label>
+          <mat-select [(ngModel)]="toPlace">
+            <mat-option value="Dubai">Dubai</mat-option>
+            <mat-option value="Paris">Paris</mat-option>
+            <mat-option value="Tokyo">Tokyo</mat-option>
+            <mat-option value="Goa">Goa</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
-      <input
-        matInput
-        type="number"
-        [(ngModel)]="ticketCount">
-    </mat-form-field>
+      <div class="search-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Departure Date</mat-label>
+          <input matInput [matDatepicker]="d1" [(ngModel)]="startDate">
+          <mat-datepicker-toggle matIconSuffix [for]="d1"></mat-datepicker-toggle>
+          <mat-datepicker #d1></mat-datepicker>
+        </mat-form-field>
 
-    <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline">
+          <mat-label>Return Date</mat-label>
+          <input matInput [matDatepicker]="d2" [(ngModel)]="endDate">
+          <mat-datepicker-toggle matIconSuffix [for]="d2"></mat-datepicker-toggle>
+          <mat-datepicker #d2></mat-datepicker>
+        </mat-form-field>
+      </div>
 
-      <mat-label>Date of Journey</mat-label>
+      <div class="search-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Tickets</mat-label>
+          <input
+            matInput
+            type="number"
+            min="1"
+            [(ngModel)]="ticketCount"
+            (ngModelChange)="updatePassengers($event)"
+          >
+        </mat-form-field>
+      </div>
 
-      <input
-        matInput
-        [matDatepicker]="picker"
-        [(ngModel)]="selectedDate">
+      <!-- PASSENGERS -->
+      <div class="passenger-box" *ngIf="ticketCount > 0">
 
-      <mat-datepicker-toggle
-        matIconSuffix
-        [for]="picker">
-      </mat-datepicker-toggle>
+        <h3>Passenger Type</h3>
 
-      <mat-datepicker #picker></mat-datepicker>
+        <div class="passenger-row" *ngFor="let p of passengers; let i = index">
 
-    </mat-form-field>
+          <p>Passenger {{ i + 1 }}</p>
 
-    <div class="price">
-      Estimated Price: ₹4500 per ticket
-    </div>
+          <mat-radio-group [(ngModel)]="passengers[i].type">
 
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="confirmBooking()">
+            <mat-radio-button value="adult">Adult</mat-radio-button>
+            <mat-radio-button value="child">Child</mat-radio-button>
 
-      Book Ticket
+          </mat-radio-group>
 
-    </button>
+        </div>
 
-  </div>
+      </div>
 
-  <!-- HOTELS -->
-  <div *ngIf="bookingType === 'hotels'" class="booking-card">
-
-    <h2>🏨 Hotel Booking</h2>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Guest Name</mat-label>
-
-      <input
-        matInput
-        [(ngModel)]="passengerName">
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Number of Rooms</mat-label>
-
-      <input
-        matInput
-        type="number"
-        [(ngModel)]="ticketCount">
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-
-      <mat-label>Check-in Date</mat-label>
-
-      <input
-        matInput
-        [matDatepicker]="checkin"
-        [(ngModel)]="selectedDate">
-
-      <mat-datepicker-toggle
-        matIconSuffix
-        [for]="checkin">
-      </mat-datepicker-toggle>
-
-      <mat-datepicker #checkin></mat-datepicker>
-
-    </mat-form-field>
-
-    <div class="price">
-      Starting Price: ₹2500 / night
-    </div>
-
-    <button
-      mat-raised-button
-      color="accent"
-      (click)="confirmBooking()">
-
-      Confirm Booking
-
-    </button>
+    </ng-container>
 
   </div>
 
-  <!-- TRAINS -->
-  <div *ngIf="bookingType === 'trains'" class="booking-card">
+  <!-- RIGHT -->
+  <div class="results-section">
 
-    <h2>🚆 Train Booking</h2>
+    <h2>✈ Flights</h2>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Passenger Name</mat-label>
+    <mat-card class="result-card">
 
-      <input
-        matInput
-        [(ngModel)]="passengerName">
-    </mat-form-field>
+      <img src="assets/images/flight.avif">
 
-    <mat-form-field appearance="outline">
-      <mat-label>No of Tickets</mat-label>
+      <div class="result-info">
+        <h3>ReddyFisher Airways</h3>
+        <p>{{ fromPlace || 'Hyderabad' }} → {{ toPlace || 'Dubai' }}</p>
+        <small>{{ startDate | date:'mediumDate' }}</small>
+      </div>
 
-      <input
-        matInput
-        type="number"
-        [(ngModel)]="ticketCount">
-    </mat-form-field>
+      <div class="price-box">
+        <h2>₹{{ calculateFlightPrice() }}</h2>
 
-    <mat-form-field appearance="outline">
+        <button mat-raised-button color="primary"
+          (click)="confirmBooking('flight','ReddyFisher Airways',45000)">
+          Book Flight
+        </button>
+      </div>
 
-      <mat-label>Date of Journey</mat-label>
-
-      <input
-        matInput
-        [matDatepicker]="trainpicker"
-        [(ngModel)]="selectedDate">
-
-      <mat-datepicker-toggle
-        matIconSuffix
-        [for]="trainpicker">
-      </mat-datepicker-toggle>
-
-      <mat-datepicker #trainpicker></mat-datepicker>
-
-    </mat-form-field>
-
-    <div class="price">
-      Estimated Price: ₹800 per ticket
-    </div>
-
-    <button
-      mat-raised-button
-      color="warn"
-      (click)="confirmBooking()">
-
-      Confirm Booking
-
-    </button>
+    </mat-card>
 
   </div>
 

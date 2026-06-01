@@ -1,3 +1,4 @@
+<!-- TOOLBAR -->
 <mat-toolbar class="toolbar">
 
   <button mat-raised-button color="accent" (click)="toggleOrders()">
@@ -5,16 +6,17 @@
     Orders
   </button>
 
-  <span class="toolbar-title">Travel Dashboard</span>
+  <span class="toolbar-title">✈ ReddyFisher Travel Dashboard</span>
 
 </mat-toolbar>
 
+<!-- MAIN WRAPPER -->
 <div class="dashboard">
 
   <!-- ORDERS PANEL -->
   <div class="orders-panel" *ngIf="showOrders">
 
-    <h3>📦 My Orders</h3>
+    <h3>📦 My ReddyFisher Orders</h3>
 
     <div *ngFor="let o of orders" class="order">
 
@@ -37,70 +39,50 @@
         <small>Date: {{ o.date }}</small>
 
         <div class="order-price">
-          ₹{{ o.price }}
-        </div>
+          ₹{{ o.price }}</div>
 
       </div>
 
     </div>
-
   </div>
 
   <!-- MAIN CARDS -->
   <div class="card-container">
 
-    <!-- FLIGHTS -->
-    <mat-card
-      class="dashboard-card"
-      [routerLink]="['/booking','flights']">
-
-      <img src="flight.avif">
+    <mat-card class="dashboard-card" [routerLink]="['/booking','flights']">
+      <img src="images/flight.jpg">
 
       <div class="card-overlay">
         <div class="hover-text">
-          <h3>Flights</h3>
-          <p>Book Flights Worldwide</p>
+          <h3>ReddyFisher Flights</h3>
+          <p>Fly across 100+ destinations</p>
         </div>
-
         <mat-icon>flight</mat-icon>
       </div>
-
     </mat-card>
 
-    <!-- HOTELS -->
-    <mat-card
-      class="dashboard-card"
-      [routerLink]="['/booking','hotels']">
-
-      <img src="hotel.webp">
+    <mat-card class="dashboard-card" [routerLink]="['/booking','hotels']">
+      <img src="images/hotel.webp">
 
       <div class="card-overlay">
         <div class="hover-text">
-          <h3>Hotels</h3>
-          <p>Luxury stays & resorts</p>
+          <h3>ReddyFisher Hotels</h3>
+          <p>Luxury stays & premium resorts</p>
         </div>
-
         <mat-icon>hotel</mat-icon>
       </div>
-
     </mat-card>
 
-    <!-- TRAINS -->
-    <mat-card
-      class="dashboard-card"
-      [routerLink]="['/booking','trains']">
-
-      <img src="trains.webp">
+    <mat-card class="dashboard-card" [routerLink]="['/booking','trains']">
+      <img src="images/trains.webp">
 
       <div class="card-overlay">
         <div class="hover-text">
-          <h3>Trains</h3>
-          <p>Travel Across Cities</p>
+          <h3>ReddyFisher Trains</h3>
+          <p>Comfortable city travel</p>
         </div>
-
         <mat-icon>train</mat-icon>
       </div>
-
     </mat-card>
 
   </div>
@@ -109,13 +91,13 @@
   <div class="section">
 
     <h2 class="section-title">
-      🌍 Top Places To Visit This Season
+      🌍 Top Destinations by ReddyFisher
     </h2>
 
     <div class="places-carousel">
 
       <mat-card class="place-card">
-        <img src="dubai.jpg">
+        <img src="images/dubai.jpg">
         <div class="place-info">
           <h3>Dubai</h3>
           <p>Luxury shopping & skyline</p>
@@ -123,7 +105,7 @@
       </mat-card>
 
       <mat-card class="place-card">
-        <img src="paris.jpg">
+        <img src="images/paris.jpg">
         <div class="place-info">
           <h3>Paris</h3>
           <p>City of Lights & Romance</p>
@@ -131,7 +113,7 @@
       </mat-card>
 
       <mat-card class="place-card">
-        <img src="goa.jpg">
+        <img src="images/goa.jpg">
         <div class="place-info">
           <h3>Goa</h3>
           <p>Beaches & nightlife</p>
@@ -139,7 +121,7 @@
       </mat-card>
 
       <mat-card class="place-card">
-        <img src="tokyo.jpg">
+        <img src="images/tokyo.jpg">
         <div class="place-info">
           <h3>Tokyo</h3>
           <p>Future meets tradition</p>
@@ -147,7 +129,7 @@
       </mat-card>
 
       <mat-card class="place-card">
-        <img src="bali.jpg">
+        <img src="images/bali.jpg">
         <div class="place-info">
           <h3>Bali</h3>
           <p>Tropical paradise</p>
@@ -155,14 +137,13 @@
       </mat-card>
 
     </div>
-
   </div>
 
   <!-- DEALS -->
   <div class="section">
 
     <h2 class="section-title">
-      💸 Save A Lot On These Deals
+      💸 ReddyFisher Exclusive Deals
     </h2>
 
     <div class="deals-grid">
@@ -171,42 +152,70 @@
         <h3>Flight + Hotel Combo</h3>
         <p>Hyderabad → Dubai</p>
         <h2>₹49,999</h2>
-        <small>Save 35%</small>
       </mat-card>
 
       <mat-card class="deal-card">
         <h3>Weekend Goa Trip</h3>
         <p>2 Nights + Flight</p>
         <h2>₹12,499</h2>
-        <small>Limited Offer</small>
       </mat-card>
 
       <mat-card class="deal-card">
         <h3>Luxury Maldives</h3>
         <p>5 Star Beach Resort</p>
         <h2>₹89,999</h2>
-        <small>Couple Package</small>
       </mat-card>
 
       <mat-card class="deal-card">
         <h3>Tokyo Explorer</h3>
         <p>Flight + Hotel</p>
         <h2>₹1,29,999</h2>
-        <small>20% OFF</small>
       </mat-card>
 
       <mat-card class="deal-card">
         <h3>Europe Rail Pass</h3>
         <p>Unlimited Travel</p>
         <h2>₹39,999</h2>
-        <small>Summer Sale</small>
       </mat-card>
 
       <mat-card class="deal-card">
         <h3>Paris Honeymoon</h3>
         <p>Romantic Getaway</p>
         <h2>₹1,59,999</h2>
-        <small>Save ₹20,000</small>
+      </mat-card>
+
+    </div>
+  </div>
+
+  <!-- AIRWAYS -->
+  <div class="section">
+
+    <h2 class="section-title">
+      ✈ Experience ReddyFisher Airways
+    </h2>
+
+    <div class="airways-carousel">
+
+      <mat-card class="airways-card">
+        <img src="images/airways1.jpg">
+      </mat-card>
+
+      <mat-card class="airways-card">
+        <img src="images/airways2.jpg">
+      </mat-card>
+
+      <mat-card class="airways-card">
+        <img src="images/airways3.jpg">
+      </mat-card>
+
+      <mat-card class="airways-card">
+        <img src="images/airways4.jpg">
+        <h3 class="airways-info">HI</h3>
+        <p class="airways-info">Hi</p>
+      </mat-card>
+
+      <mat-card class="airways-card">
+        <img src="images/airways5.jpg">
       </mat-card>
 
     </div>

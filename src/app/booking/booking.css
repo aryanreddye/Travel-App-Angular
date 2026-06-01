@@ -1,96 +1,165 @@
 
+/* ================= PAGE LAYOUT ================= */
 .booking-page {
   min-height: 100vh;
+  background: #000;
+  padding: 18px;
 
   display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background: linear-gradient(135deg, #840808, #000000);
-
-  padding: 20px;
+  gap: 18px;
+  align-items: flex-start;
 }
 
-/* MAIN CARD */
-.booking-card {
-  width: 420px;
-  max-width: 95%;
+/* ================= LEFT PANEL ================= */
+.search-box {
+  width: 320px;
+  background: rgba(255, 255, 255, 0.95);
 
-  background: white;
-
-  padding: 28px;
-
+  padding: 16px;
   border-radius: 16px;
 
-  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+  position: sticky;
+  top: 15px;
+}
 
+.search-box h1 {
+  font-size: 18px;
+  margin-bottom: 14px;
+  color: #000000;
+}
+
+/* ================= INPUT ROWS ================= */
+.search-row {
   display: flex;
   flex-direction: column;
-
-  gap: 15px;
-
-  transition: 0.3s ease;
-}
-
-.booking-card:hover {
-  transform: translateY(-4px);
-}
-
-/* TITLE */
-.booking-card h2 {
-  text-align: center;
-
-  color: #840808;
+  gap: 10px;
   margin-bottom: 10px;
 }
 
-/* INPUT FIELDS */
-mat-form-field {
+.search-row mat-form-field {
   width: 100%;
 }
 
-/* DATE PICKER ICON COLOR */
-mat-datepicker-toggle {
-  color: #840808;
+/* ================= CATEGORY BUTTONS ================= */
+.category-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
 }
 
-/* PRICE BOX */
-.price {
-  padding: 12px;
-
-  background: #f5f5f5;
-
-  border-left: 5px solid #840808;
-
-  font-weight: bold;
-
-  color: #222;
-
-  border-radius: 8px;
-}
-
-/* BUTTON */
-button {
+.category-buttons button {
   width: 100%;
-
-  padding: 12px;
-
-  font-weight: bold;
-
-  border-radius: 25px;
-
-  transition: 0.3s ease;
+  padding: 10px;
+  font-size: 13px;
+  border-radius: 12px;
 }
 
-button:hover {
-  transform: scale(1.03);
+/* ================= RIGHT SECTION ================= */
+.results-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-
-.mat-form-field-outline {
-  color: #840808 !important;
+.results-section h2 {
+  color: #fff;
+  margin: 0 0 10px;
 }
 
-input {
-  font-size: 14px;
+/* ================= CARD ================= */
+mat-card.result-card {
+  display: flex !important;
+  flex-direction: row !important;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 14px;
+  padding: 12px !important;
+
+  background: #1e293b !important;
+  border-radius: 14px !important;
+
+  width: 100% !important;
+}
+
+/* ================= IMAGE ================= */
+mat-card.result-card img {
+  width: 140px;
+  height: 95px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* ================= INFO ================= */
+.result-info {
+  flex: 1;
+  padding: 0 10px;
+}
+
+.result-info h3 {
+  font-size: 16px;
+  margin: 0;
+  color: #fff;
+}
+
+.result-info p {
+  font-size: 13px;
+  margin: 4px 0;
+  color: #cbd5e1;
+}
+
+.result-info small {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+/* ================= PRICE ================= */
+.price-box {
+  width: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.price-box h2 {
+  font-size: 16px;
+  color: #38bdf8;
+  margin: 0;
+}
+
+.price-box button {
+  width: 110px;
+  font-size: 12px;
+  border-radius: 10px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px) {
+
+  .booking-page {
+    flex-direction: column;
+  }
+
+  .search-box {
+    width: 100%;
+    position: relative;
+  }
+
+  mat-card.result-card {
+    flex-direction: column !important;
+    text-align: center;
+  }
+
+  mat-card.result-card img {
+    width: 100%;
+    height: 180px;
+  }
+
+  .price-box {
+    width: 100%;
+  }
 }

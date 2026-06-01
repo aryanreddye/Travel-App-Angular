@@ -1,0 +1,74 @@
+<div class="payment-page">
+
+  <!-- LEFT -->
+  <div class="tickets-section">
+
+    <h1>Your Tickets 🎟</h1>
+
+    <mat-card
+      class="ticket-card"
+      *ngFor="let t of tickets"
+    >
+
+      <h2>{{ booking.name }}</h2>
+
+      <p>
+        {{ booking.from || booking.hotelPlace }}
+        →
+        {{ booking.to || 'Stay' }}
+      </p>
+
+      <p>{{ t.passenger }}</p>
+
+      <p>{{ t.category }}</p>
+
+      <p>Seat: {{ t.seat }}</p>
+
+      <h3>₹{{ t.price }}</h3>
+
+    </mat-card>
+
+  </div>
+
+  <!-- RIGHT -->
+  <div class="summary-section">
+
+    <mat-card class="summary-card">
+
+      <h2>Payment Summary</h2>
+
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span>₹{{ subtotal }}</span>
+      </div>
+
+      <div class="summary-row">
+        <span>GST (18%)</span>
+        <span>₹{{ gst }}</span>
+      </div>
+
+      <div class="summary-row">
+        <span>Convenience Fee</span>
+        <span>₹{{ convenience }}</span>
+      </div>
+
+      <hr>
+
+      <div class="summary-row total-row">
+        <span>Total</span>
+        <span>₹{{ total }}</span>
+      </div>
+
+      <button
+        mat-raised-button
+        color="primary"
+        class="checkout-btn"
+      >
+        Proceed To Checkout
+      </button>
+
+    </mat-card>
+
+  </div>
+
+</div>

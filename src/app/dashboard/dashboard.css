@@ -313,7 +313,7 @@ mat-toolbar {
 
   cursor: pointer;
 
-  background: white;
+  background: rgb(255, 255, 255);
 }
 
 .deal-card:hover {
@@ -338,4 +338,70 @@ mat-toolbar {
 .deal-card small {
   color: green;
   font-weight: bold;
+}
+
+/* REDDYFISHER AIRWAYS */
+
+.airways-carousel {
+  display: flex;
+
+  gap: 20px;
+
+  overflow-x: auto;
+
+  padding-bottom: 12px;
+
+  scroll-behavior: smooth;
+}
+
+.airways-card {
+  min-width: 340px;
+
+  border-radius: 18px;
+
+  overflow: hidden;
+
+  flex-shrink: 0;
+
+  background: white;
+
+  transition: 0.3s ease;
+
+  cursor: pointer;
+}
+
+.airways-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow: 0 12px 28px rgba(0,0,0,0.3);
+}
+
+.airways-card img {
+  width: 100%;
+
+  height: 230px;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+.airways-info {
+  padding: 18px;
+}
+
+.airways-info h3 {
+  margin: 0;
+
+  color: #840808;
+
+  font-size: 22px;
+}
+
+.airways-info p {
+  margin-top: 10px;
+
+  color: #555;
+
+  line-height: 1.5;
 }

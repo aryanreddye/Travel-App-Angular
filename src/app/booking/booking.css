@@ -125,6 +125,12 @@ mat-card.result-card img {
   gap: 6px;
 }
 
+.price-box .card-date {
+  font-size: 12px;
+  color: #94a3b8;
+  text-align: center;
+}
+
 .price-box h2 {
   font-size: 16px;
   color: #38bdf8;

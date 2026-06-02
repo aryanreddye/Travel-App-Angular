@@ -1,74 +1,190 @@
-<div class="payment-page">
+﻿<div class="payment-page">
 
-  <!-- LEFT -->
-  <div class="tickets-section">
-
-    <h1>Your Tickets 🎟</h1>
-
-    <mat-card
-      class="ticket-card"
-      *ngFor="let t of tickets"
-    >
-
-      <h2>{{ booking.name }}</h2>
-
-      <p>
-        {{ booking.from || booking.hotelPlace }}
-        →
-        {{ booking.to || 'Stay' }}
+  <!-- HEADER -->
+  <section class="page-header">
+    <div>
+      <p class="overline">
+        <mat-icon>shopping_cart_checkout</mat-icon>
+        Checkout
       </p>
+      <p class="subtitle">
+        Review your ticket details and confirm payment before you travel.
+      </p>
+    </div>
 
-      <p>{{ t.passenger }}</p>
+    <div class="booking-type">
+      <mat-icon>
+        {{
+        booking?.type === 'flight'
+        ? 'flight'
+        : booking?.type === 'train'
+        ? 'train'
+        : 'hotel'
+        }}
+      </mat-icon>
 
-      <p>{{ t.category }}</p>
+      <span>{{ booking?.type | titlecase }}</span>
+    </div>
+  </section>
 
-      <p>Seat: {{ t.seat }}</p>
+  <div class="page-grid">
 
-      <h3>₹{{ t.price }}</h3>
+    <!-- TICKETS -->
+    <div class="tickets-section">
+      <mat-card class="tickets-card">
 
-    </mat-card>
+        <div class="section-title">
+          <div>
+            <h2>
+              <mat-icon>confirmation_number</mat-icon>
+              Ticket Details
+            </h2>
+
+            <p>
+              {{ booking?.name }} ·
+              {{ tickets.length }}
+              ticket{{ tickets.length === 1 ? '' : 's' }}
+            </p>
+          </div>
+        </div>
+
+        <ng-container *ngIf="tickets.length; else noTickets">
+
+          <mat-card
+            class="ticket-card"
+            *ngFor="let t of tickets"
+          >
+
+            <div class="ticket-top">
+
+              <div>
+                <h3>{{ booking?.name }}</h3>
+
+                <p class="route">
+                  <mat-icon>location_on</mat-icon>
+
+                  {{ booking?.from || booking?.hotelPlace }}
+                  →
+
+                  {{ booking?.to || 'Stay' }}
+                </p>
+              </div>
+
+              <div class="ticket-icon">
+                <mat-icon>
+                  {{
+                  booking?.type === 'flights'
+                  ? 'flight'
+                  : booking?.type === 'trains'
+                  ? 'train'
+                  : 'hotel'
+                  }}
+                </mat-icon>
+              </div>
+
+            </div>
+
+            <div class="ticket-details">
+
+              <div class="detail-item">
+                <mat-icon>person</mat-icon>
+                <span>{{ t.passenger }}</span>
+              </div>
+
+              <div class="detail-item">
+                <mat-icon>badge</mat-icon>
+                <span>{{ t.category }}</span>
+              </div>
+
+              <div class="detail-item">
+                <mat-icon>event_seat</mat-icon>
+                <span>Seat {{ t.seat }}</span>
+              </div>
+
+            </div>
+
+            <div class="ticket-price">
+              <mat-icon>currency_rupee</mat-icon>
+              {{ t.price }}
+            </div>
+
+          </mat-card>
+
+        </ng-container>
+
+        <ng-template #noTickets>
+          <p class="empty-state">
+            <mat-icon>info</mat-icon>
+            No ticket details available. Reloaded from saved booking.
+          </p>
+        </ng-template>
+
+      </mat-card>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="summary-section">
+
+      <mat-card class="summary-card">
+
+        <div class="summary-header">
+          <p class="overline">
+            <mat-icon>payments</mat-icon>
+            Payment Summary
+          </p>
+
+          <h2>Confirm Totals</h2>
+        </div>
+
+        <div class="summary-row">
+          <span>
+            <mat-icon>receipt_long</mat-icon>
+            Subtotal
+          </span>
+
+          <strong>₹{{ subtotal }}</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>
+            <mat-icon>percent</mat-icon>
+            GST (18%)
+          </span>
+
+          <strong>₹{{ gst | number:'1.0-0' }}</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>
+            <mat-icon>local_offer</mat-icon>
+            Convenience Fee
+          </span>
+
+          <strong>₹{{ convenience }}</strong>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="summary-row total-row">
+          <span>
+            <mat-icon>account_balance_wallet</mat-icon>
+            Total
+          </span>
+
+          <strong>₹{{ total | number:'1.0-0' }}</strong>
+        </div>
+
+        <button
+          mat-raised-button
+          class="checkout-btn"
+        >
+          <mat-icon>lock</mat-icon>
+          Proceed to Checkout
+        </button>
+
+      </mat-card>
+
+    </div>
 
   </div>
-
-  <!-- RIGHT -->
-  <div class="summary-section">
-
-    <mat-card class="summary-card">
-
-      <h2>Payment Summary</h2>
-
-      <div class="summary-row">
-        <span>Subtotal</span>
-        <span>₹{{ subtotal }}</span>
-      </div>
-
-      <div class="summary-row">
-        <span>GST (18%)</span>
-        <span>₹{{ gst }}</span>
-      </div>
-
-      <div class="summary-row">
-        <span>Convenience Fee</span>
-        <span>₹{{ convenience }}</span>
-      </div>
-
-      <hr>
-
-      <div class="summary-row total-row">
-        <span>Total</span>
-        <span>₹{{ total }}</span>
-      </div>
-
-      <button
-        mat-raised-button
-        color="primary"
-        class="checkout-btn"
-      >
-        Proceed To Checkout
-      </button>
-
-    </mat-card>
-
-  </div>
-
 </div>

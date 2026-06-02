@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
@@ -33,30 +33,49 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 export class Dashboard {
 
-  selectedSection = '';
-  showOrders = false;
+  constructor(private router: Router) {}
 
-  orders: any[] = [];
-
-  constructor() {}
-
-  ngOnInit() {
-
-    const data = history.state?.order;
-    console.log(data);
-
-    if (data) {
-      this.orders.push(data);
+  openSidebarOption(option: string, sidenav: any) {
+    switch (option) {
+      case 'profile':
+        this.router.navigate(['/profile']);
+        break;
+      case 'orders':
+        this.router.navigate(['/orders']);
+        break;
+      case 'settings':
+        this.router.navigate(['/profile'], { queryParams: { section: 'settings' } });
+        break;
+      case 'signout':
+        this.router.navigate(['/']);
+        break;
+      default:
+        break;
     }
 
-  }
-  
-
-  toggleOrders() {
-    this.showOrders = !this.showOrders;
+    if (sidenav && sidenav.close) {
+      sidenav.close();
+    }
   }
 
-  showSection(section: string) {
-    this.selectedSection = section;
+  openPage(type: string, params: any = {}) {
+    this.router.navigate(['/booking', type], { queryParams: params });
   }
+
+  openTopCard(type: string) {
+    this.openPage(type);
+  }
+
+  openDestination(location: string) {
+    this.openPage('hotels', { location });
+  }
+
+  openBooking(location: string) {
+    this.openPage('hotels', { location });
+  }
+
+  openDealHotel(hotelName: string, location: string, image: string) {
+    this.openPage('hotels', { hotelName, location, hotelImage: image });
+  }
+
 }

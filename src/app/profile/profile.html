@@ -1,1 +1,18 @@
-<p>profile works!</p>
+<div class="profile-page">
+  <mat-card class="profile-card">
+    <div class="profile-avatar">
+      <mat-icon>person</mat-icon>
+    </div>
+
+    <div class="profile-details">
+      <h1>{{ user.name }}</h1>
+      <p class="profile-role">{{ user.accountTier }}</p>
+
+      <div class="profile-meta">
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Phone:</strong> {{ user.phone }}</p>
+        <p><strong>Member since:</strong> {{ user.memberSince }}</p>
+      </div>
+    </div>
+  </mat-card>
+</div>

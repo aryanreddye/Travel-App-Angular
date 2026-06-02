@@ -1,0 +1,45 @@
+.profile-page {
+  padding: 24px;
+  color: white;
+}
+
+.profile-card {
+  display: flex;
+  gap: 24px;
+  padding: 28px;
+  border-radius: 20px;
+  background: #111;
+}
+
+.profile-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: #840808;
+  display: grid;
+  place-items: center;
+}
+
+.profile-avatar mat-icon {
+  color: white;
+  font-size: 48px;
+}
+
+.profile-details h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.profile-role {
+  margin: 6px 0 18px;
+  color: #bbb;
+}
+
+.profile-meta p {
+  margin: 8px 0;
+  color: #ddd;
+}
+
+.profile-meta strong {
+  color: #fff;
+}

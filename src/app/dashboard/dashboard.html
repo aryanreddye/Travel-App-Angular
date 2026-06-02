@@ -1,55 +1,50 @@
-<!-- TOOLBAR -->
-<mat-toolbar class="toolbar">
+<mat-sidenav-container class="sidenav-container">
 
-  <button mat-raised-button color="accent" (click)="toggleOrders()">
-    <mat-icon>list</mat-icon>
-    Orders
-  </button>
-
-  <span class="toolbar-title">✈ ReddyFisher Travel Dashboard</span>
-
-</mat-toolbar>
-
-<!-- MAIN WRAPPER -->
-<div class="dashboard">
-
-  <!-- ORDERS PANEL -->
-  <div class="orders-panel" *ngIf="showOrders">
-
-    <h3>📦 My ReddyFisher Orders</h3>
-
-    <div *ngFor="let o of orders" class="order">
-
-      <mat-icon>
-        {{
-          o.type === 'flights' ? 'flight' :
-          o.type === 'hotels' ? 'hotel' : 'train'
-        }}
-      </mat-icon>
-
-      <div class="order-info">
-
-        <p class="order-title">{{ o.name }}</p>
-
-        <div class="order-meta">
-          <small>Type: {{ o.type | uppercase }}</small>
-          <small>Tickets: {{ o.tickets }}</small>
-        </div>
-
-        <small>Date: {{ o.date }}</small>
-
-        <div class="order-price">
-          ₹{{ o.price }}</div>
-
-      </div>
-
+  <mat-sidenav #sidenav class="sidenav" mode="over">
+    <div class="sidenav-header">
+      <h2>ReddyFisher</h2>
+      <p>Travel dashboard</p>
     </div>
-  </div>
 
-  <!-- MAIN CARDS -->
+    <button mat-button class="sidenav-item" (click)="openSidebarOption('profile', sidenav)">
+      <mat-icon>person</mat-icon>
+      Profile
+    </button>
+
+    <button mat-button class="sidenav-item" (click)="openSidebarOption('orders', sidenav)">
+      <mat-icon>receipt_long</mat-icon>
+      Orders
+    </button>
+
+    <button mat-button class="sidenav-item" (click)="openSidebarOption('settings', sidenav)">
+      <mat-icon>settings</mat-icon>
+      Settings
+    </button>
+
+    <button mat-button class="sidenav-item" (click)="openSidebarOption('signout', sidenav)">
+      <mat-icon>logout</mat-icon>
+      Sign Out
+    </button>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <!-- TOOLBAR -->
+    <mat-toolbar class="toolbar">
+      <button mat-icon-button  (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <span class="toolbar-title">✈ ReddyFisher Travel Dashboard</span>
+    </mat-toolbar>
+
+    <!-- MAIN WRAPPER -->
+    <div class="dashboard">
+
+      <!-- MAIN CARDS -->
   <div class="card-container">
 
-    <mat-card class="dashboard-card" [routerLink]="['/booking','flights']">
+    <mat-card class="dashboard-card" (click)="openTopCard('flights')">
       <img src="images/flight.jpg">
 
       <div class="card-overlay">
@@ -61,7 +56,7 @@
       </div>
     </mat-card>
 
-    <mat-card class="dashboard-card" [routerLink]="['/booking','hotels']">
+    <mat-card class="dashboard-card" (click)="openTopCard('hotels')">
       <img src="images/hotel.webp">
 
       <div class="card-overlay">
@@ -73,7 +68,7 @@
       </div>
     </mat-card>
 
-    <mat-card class="dashboard-card" [routerLink]="['/booking','trains']">
+    <mat-card class="dashboard-card" (click)="openTopCard('trains')">
       <img src="images/trains.webp">
 
       <div class="card-overlay">
@@ -96,7 +91,7 @@
 
     <div class="places-carousel">
 
-      <mat-card class="place-card">
+      <mat-card class="place-card" (click)="openDestination('Dubai')" style="cursor: pointer;">
         <img src="images/dubai.jpg">
         <div class="place-info">
           <h3>Dubai</h3>
@@ -104,7 +99,7 @@
         </div>
       </mat-card>
 
-      <mat-card class="place-card">
+      <mat-card class="place-card" (click)="openDestination('Paris')" style="cursor: pointer;">
         <img src="images/paris.jpg">
         <div class="place-info">
           <h3>Paris</h3>
@@ -112,7 +107,7 @@
         </div>
       </mat-card>
 
-      <mat-card class="place-card">
+      <mat-card class="place-card" (click)="openDestination('Goa')" style="cursor: pointer;">
         <img src="images/goa.jpg">
         <div class="place-info">
           <h3>Goa</h3>
@@ -120,7 +115,7 @@
         </div>
       </mat-card>
 
-      <mat-card class="place-card">
+      <mat-card class="place-card" (click)="openDestination('Tokyo')" style="cursor: pointer;">
         <img src="images/tokyo.jpg">
         <div class="place-info">
           <h3>Tokyo</h3>
@@ -128,7 +123,7 @@
         </div>
       </mat-card>
 
-      <mat-card class="place-card">
+      <mat-card class="place-card" (click)="openDestination('Bali')" style="cursor: pointer;">
         <img src="images/bali.jpg">
         <div class="place-info">
           <h3>Bali</h3>
@@ -148,40 +143,64 @@
 
     <div class="deals-grid">
 
-      <mat-card class="deal-card">
-        <h3>Flight + Hotel Combo</h3>
-        <p>Hyderabad → Dubai</p>
-        <h2>₹49,999</h2>
+      <mat-card class="deal-card" (click)="openDealHotel('Dubai Sky Resort','Dubai','images/dubai_resort.webp')">
+        <img src="images/dubai_resort.webp">
+        <div class="deal-card-content">
+          <h3>Dubai Sky Resort</h3>
+          <p>5-star hotel stay with skyline views</p>
+          <h2>₹28,999</h2>
+          <small>Hotel Deal</small>
+        </div>
       </mat-card>
 
-      <mat-card class="deal-card">
-        <h3>Weekend Goa Trip</h3>
-        <p>2 Nights + Flight</p>
-        <h2>₹12,499</h2>
+      <mat-card class="deal-card" (click)="openDealHotel('Goa Beach Retreat','Goa','images/goa_resort.jpg')">
+        <img src="images/goa_resort.jpg">
+        <div class="deal-card-content">
+          <h3>Goa Beach Retreat</h3>
+          <p>Sea-facing rooms & sunset dining</p>
+          <h2>₹11,999</h2>
+          <small>Hotel Deal</small>
+        </div>
       </mat-card>
 
-      <mat-card class="deal-card">
-        <h3>Luxury Maldives</h3>
-        <p>5 Star Beach Resort</p>
-        <h2>₹89,999</h2>
+      <mat-card class="deal-card" (click)="openDealHotel('Parisian Suite','Paris','images/paris_resorty.jpg')">
+        <img src="images/paris_resorty.jpg">
+        <div class="deal-card-content">
+          <h3>Parisian Suite</h3>
+          <p>Romantic hotel escape near the Seine</p>
+          <h2>₹44,999</h2>
+          <small>Hotel Deal</small>
+        </div>
       </mat-card>
 
-      <mat-card class="deal-card">
-        <h3>Tokyo Explorer</h3>
-        <p>Flight + Hotel</p>
-        <h2>₹1,29,999</h2>
+      <mat-card class="deal-card" (click)="openDealHotel('Bali Villa Stay','Bali','images/bali_resort.png')">
+        <img src="images/bali_resort.png">
+        <div class="deal-card-content">
+          <h3>Bali Villa Stay</h3>
+          <p>Private pool villa with tropical dining</p>
+          <h2>₹23,999</h2>
+          <small>Hotel Deal</small>
+        </div>
       </mat-card>
 
-      <mat-card class="deal-card">
-        <h3>Europe Rail Pass</h3>
-        <p>Unlimited Travel</p>
-        <h2>₹39,999</h2>
+      <mat-card class="deal-card" (click)="openDealHotel('Bali Water Villa','Bali','images/bali.jpg')">
+        <img src="images/bali.jpg">
+        <div class="deal-card-content">
+          <h3>Bali Water Villa</h3>
+          <p>Overwater bungalow with beach access</p>
+          <h2>₹79,999</h2>
+          <small>Hotel Deal</small>
+        </div>
       </mat-card>
 
-      <mat-card class="deal-card">
-        <h3>Paris Honeymoon</h3>
-        <p>Romantic Getaway</p>
-        <h2>₹1,59,999</h2>
+      <mat-card class="deal-card" (click)="openDealHotel('Tokyo Comfort Stay','Tokyo','images/tokyo.jpg')">
+        <img src="images/tokyo.jpg">
+        <div class="deal-card-content">
+          <h3>Tokyo Comfort Stay</h3>
+          <p>Central hotel close to city highlights</p>
+          <h2>₹32,999</h2>
+          <small>Hotel Deal</small>
+        </div>
       </mat-card>
 
     </div>
@@ -197,25 +216,43 @@
     <div class="airways-carousel">
 
       <mat-card class="airways-card">
-        <img src="images/airways1.jpg">
+        <img src="images/airways1.webp">
+        <div class="airways-info">
+          <h3>Built for the Web</h3>
+          <p>Our web app makes planning and booking travel faster, smoother, and more intuitive.</p>
+        </div>
       </mat-card>
 
       <mat-card class="airways-card">
-        <img src="images/airways2.jpg">
+        <img src="images/airways2.webp">
+        <div class="airways-info">
+          <h3>Luxury Airplanes</h3>
+          <p>Enjoy premium cabins, spacious seating, and world-class service on every flight.</p>
+        </div>
       </mat-card>
 
       <mat-card class="airways-card">
         <img src="images/airways3.jpg">
+        <div class="airways-info">
+          <h3>Make Memories</h3>
+          <p>Every journey is designed to deliver unforgettable moments with loved ones.</p>
+        </div>
       </mat-card>
 
       <mat-card class="airways-card">
         <img src="images/airways4.jpg">
-        <h3 class="airways-info">HI</h3>
-        <p class="airways-info">Hi</p>
+        <div class="airways-info">
+          <h3>Luxury Stays</h3>
+          <p>Stay in handpicked hotels and resorts that match your style and comfort needs.</p>
+        </div>
       </mat-card>
 
       <mat-card class="airways-card">
         <img src="images/airways5.jpg">
+        <div class="airways-info">
+          <h3>Membership Benefits</h3>
+          <p>Unlock exclusive rewards, upgrades, and travel privileges with ReddyFisher membership.</p>
+        </div>
       </mat-card>
 
     </div>
@@ -223,3 +260,7 @@
   </div>
 
 </div>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

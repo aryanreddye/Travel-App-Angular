@@ -1,5 +1,46 @@
 
 /* MAIN LAYOUT */
+.sidenav-container {
+  min-height: 100vh;
+  background: #000;
+}
+
+.sidenav {
+  width: 260px;
+  background: #120202;
+  color: white;
+  padding: 20px 0;
+}
+
+.sidenav-header {
+  padding: 0 20px 20px;
+  border-bottom: 1px solid rgba(215, 32, 32, 0.12);
+  margin-bottom: 20px;
+}
+
+.sidenav-header h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.sidenav-header p {
+  margin: 4px 0 0;
+  color: #bbb;
+}
+
+.sidenav-item {
+  width: 100%;
+  justify-content: flex-start;
+  gap: 12px;
+  color: rgb(255, 255, 255);
+  padding: 14px 20px;
+  text-align: left;
+}
+
+mat-icon {
+  color: #ffffff;
+}
+
 .dashboard {
   min-height: 100vh;
   background: #000;
@@ -297,42 +338,55 @@ mat-toolbar {
 /* DEALS */
 
 .deals-grid {
-  display: grid;
-
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-
+  display: flex;
   gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scroll-behavior: smooth;
 }
 
 .deal-card {
-  padding: 25px;
-
+  min-width: 260px;
+  max-width: 260px;
   border-radius: 16px;
-
+  overflow: hidden;
   transition: 0.3s ease;
-
   cursor: pointer;
-
   background: rgb(255, 255, 255);
 }
 
 .deal-card:hover {
   transform: translateY(-5px);
-
   box-shadow: 0 10px 25px rgba(0,0,0,0.25);
 }
 
+.deal-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.deal-card-content {
+  padding: 16px;
+}
+
 .deal-card h3 {
-  margin-top: 0;
+  margin: 0 0 8px;
+  font-size: 1rem;
 }
 
 .deal-card p {
   color: gray;
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+  line-height: 1.4;
 }
 
 .deal-card h2 {
   color: #840808;
-  margin: 15px 0 5px;
+  margin: 0 0 6px;
+  font-size: 1.15rem;
 }
 
 .deal-card small {
@@ -355,7 +409,8 @@ mat-toolbar {
 }
 
 .airways-card {
-  min-width: 340px;
+  min-width: 260px;
+  max-width: 280px;
 
   border-radius: 18px;
 
@@ -379,7 +434,7 @@ mat-toolbar {
 .airways-card img {
   width: 100%;
 
-  height: 230px;
+  height: 180px;
 
   object-fit: cover;
 
@@ -387,7 +442,7 @@ mat-toolbar {
 }
 
 .airways-info {
-  padding: 18px;
+  padding: 14px 16px 16px;
 }
 
 .airways-info h3 {

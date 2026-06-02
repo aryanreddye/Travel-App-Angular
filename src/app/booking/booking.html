@@ -27,6 +27,7 @@
             <mat-option value="Paris">Paris</mat-option>
             <mat-option value="Tokyo">Tokyo</mat-option>
             <mat-option value="Goa">Goa</mat-option>
+            <mat-option value="Bali">Bali</mat-option>
           </mat-select>
         </mat-form-field>
 
@@ -34,21 +35,24 @@
 
       <div class="search-row">
 
-        <mat-form-field appearance="outline">
-          <mat-label>Departure Date</mat-label>
-          <input matInput [matDatepicker]="d1" [(ngModel)]="startDate">
-          <mat-datepicker-toggle matIconSuffix [for]="d1"></mat-datepicker-toggle>
-          <mat-datepicker #d1></mat-datepicker>
-        </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Journey Date</mat-label>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Return Date</mat-label>
-          <input matInput [matDatepicker]="d2" [(ngModel)]="endDate">
-          <mat-datepicker-toggle matIconSuffix [for]="d2"></mat-datepicker-toggle>
-          <mat-datepicker #d2></mat-datepicker>
-        </mat-form-field>
+    <input
+      matInput
+      [matDatepicker]="d1"
+      [(ngModel)]="startDate">
 
-      </div>
+    <mat-datepicker-toggle
+      matIconSuffix
+      [for]="d1">
+    </mat-datepicker-toggle>
+
+    <mat-datepicker #d1></mat-datepicker>
+
+  </mat-form-field>
+
+</div>
 
       <div class="search-row">
 
@@ -304,24 +308,28 @@
 
     <h2>✈ Flights</h2>
 
-    <mat-card class="result-card">
+    <div *ngIf="filteredFlights?.length === 0">
+      <p>No flights available for {{ fromPlace || 'selected' }} → {{ toPlace || 'selected' }}.</p>
+    </div>
 
-      <img src="assets/images/flight.avif">
+    <mat-card class="result-card" *ngFor="let f of filteredFlights">
+
+      <img [src]="f.image">
 
       <div class="result-info">
-        <h3>ReddyFisher Airways</h3>
-        <p>{{ fromPlace || 'Hyderabad' }} → {{ toPlace || 'Dubai' }}</p>
-        <small>{{ startDate | date:'mediumDate' }}</small>
+        <h3>{{ f.airline }}</h3>
+        <p>{{ f.from }} → {{ f.to }}</p>
       </div>
 
       <div class="price-box">
 
-        <h2>₹{{ calculateFlightPrice() }}</h2>
+        <small class="card-date">{{ f.depart }}</small>
+        <h2>₹{{ f.price }}</h2>
 
         <button
           mat-raised-button
           color="primary"
-          (click)="confirmBooking('flight','ReddyFisher Airways',45000)">
+          (click)="confirmBooking('flight', f.airline + ' ' + f.from + '→' + f.to, f.price)">
           Book Flight
         </button>
 
@@ -334,32 +342,33 @@
   <div class="results-section" *ngIf="selectedType === 'hotels'">
 
     <h2>🏨 Hotels</h2>
+    <div *ngIf="filteredHotels?.length === 0">
+      <p>No hotels available for {{ hotelPlace || 'selected' }}.</p>
+    </div>
 
-    <mat-card class="result-card">
+    <mat-card class="result-card" *ngFor="let h of filteredHotels">
 
-      <img src="assets/images/hotel.webp">
+      <img [src]="hotelImage && hotelName === h.name ? hotelImage : (h.image || 'images/hotel.webp')">
 
       <div class="result-info">
 
-        <h3>Reddylton Palace</h3>
+        <h3>{{ h.name }}</h3>
 
-        <p>{{ hotelPlace || 'Dubai' }}</p>
-
-        <small>
-          Check In:
-          {{ startDate | date:'mediumDate' }}
-        </small>
+        <p>{{ h.location }}</p>
 
       </div>
 
       <div class="price-box">
 
-        <h2>₹{{ calculateHotelPrice() }}</h2>
+        <small class="card-date">
+          Check In: {{ startDate | date:'mediumDate' }}
+        </small>
+        <h2>₹{{ h.price }}</h2>
 
         <button
           mat-raised-button
           color="accent"
-          (click)="confirmBooking('hotel','Reddylton Palace',28999)">
+          (click)="confirmBooking('hotel', h.name, h.price)">
           Reserve Hotel
         </button>
 
@@ -373,34 +382,37 @@
 
     <h2>🚆 Trains</h2>
 
-    <mat-card class="result-card">
+    <div *ngIf="filteredTrains?.length === 0">
+      <p>No trains available for {{ fromPlace || 'selected' }} → {{ toPlace || 'selected' }}.</p>
+    </div>
 
-      <img src="assets/images/trains.webp">
+    <mat-card class="result-card" *ngFor="let t of filteredTrains">
+
+      <img [src]="t.image">
 
       <div class="result-info">
 
-        <h3>Vande Bharat Express</h3>
+        <h3>{{ t.name }}</h3>
 
         <p>
-          {{ fromPlace || 'Hyderabad' }}
+          {{ t.from }}
           →
-          {{ toPlace || 'Chennai' }}
+          {{ t.to }}
         </p>
-
-        <small>
-          {{ startDate | date:'mediumDate' }}
-        </small>
 
       </div>
 
       <div class="price-box">
 
-        <h2>₹{{ calculateTrainPrice() }}</h2>
+        <small class="card-date">
+          {{ t.depart }}
+        </small>
+        <h2>₹{{ t.price }}</h2>
 
         <button
           mat-raised-button
           color="warn"
-          (click)="confirmBooking('train','Vande Bharat Express',2200)">
+          (click)="confirmBooking('train', t.name, t.price)">
           Book Train
         </button>
 

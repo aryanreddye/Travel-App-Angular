@@ -1,0 +1,39 @@
+<div class="orders-page">
+  <div class="orders-header">
+    <h1>My Orders</h1>
+  </div>
+
+  <div *ngIf="orders.length === 0" class="orders-empty">
+    <p>No orders yet. Book a flight, hotel, or train to see it here.</p>
+  </div>
+
+  <div class="orders-grid" *ngIf="orders.length > 0">
+    <mat-card class="order-card" *ngFor="let o of orders">
+      <div class="order-card-header">
+        <div class="order-icon">
+          <mat-icon>
+            {{ o.type === 'flight' ? 'flight' : o.type === 'hotel' ? 'hotel' : 'train' }}
+          </mat-icon>
+        </div>
+        <div>
+          <h3>{{ o.name }}</h3>
+          <p class="order-type">{{ o.type | titlecase }}</p>
+        </div>
+      </div>
+
+      <div class="order-body">
+        <p *ngIf="o.from && o.to">{{ o.from }} → {{ o.to }}</p>
+        <p *ngIf="o.hotelPlace && !o.from">Hotel: {{ o.hotelPlace }}</p>
+      </div>
+
+      <div class="order-meta">
+        <span>Tickets: {{ o.tickets }}</span>
+        <span>Total: ₹{{ o.total }}</span>
+      </div>
+
+      <div class="order-date">
+        <small>Booked for: {{ o.startDate | date:'mediumDate' }}</small>
+      </div>
+    </mat-card>
+  </div>
+</div>

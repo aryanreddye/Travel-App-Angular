@@ -84,11 +84,12 @@ mat-form-field {
 
 input {
   font-size: 14px;
+  color: #ffffff;
 }
 
 
 mat-label {
-  color: #000000;
+  color: #ffffff;
 }
 
 button[type="submit"] {
@@ -122,11 +123,36 @@ button[type="submit"]:hover {
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
 
-  -webkit-text-fill-color: black !important;
+  -webkit-text-fill-color: white !important;
 
   transition: background-color 5000s ease-in-out 0s;
 }
 
+/* Angular Material inputs inside login: typed text should be white */
+::ng-deep .login-box .mat-input-element {
+  color: #ffffff !important;
+}
+
 mat-icon {
   color: #000000;
+}
+
+/* Typed text */
+::ng-deep .login-box .mat-mdc-input-element {
+  color: white !important;
+}
+
+/* Placeholder */
+::ng-deep .login-box .mat-mdc-input-element::placeholder {
+  color: rgba(255,255,255,0.7) !important;
+}
+
+/* Label */
+::ng-deep .login-box .mat-mdc-floating-label {
+  color: white !important;
+}
+
+/* Prefix icons */
+::ng-deep .login-box .mat-icon {
+  color: white !important;
 }

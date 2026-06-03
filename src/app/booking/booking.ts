@@ -10,7 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 
@@ -28,7 +28,8 @@ import { MatRadioModule } from '@angular/material/radio';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSnackBarModule
   ],
   templateUrl: './booking.html',
   styleUrl: './booking.css',
@@ -40,6 +41,12 @@ export class Booking {
   hotelPlace = '';
   hotelName = '';
   hotelImage = '';
+
+  hasSearched = false;
+
+  flightResults: { airline: string; from: string; to: string; depart: string; price: number; image: string }[] = [];
+  hotelResults: { name: string; location: string; price: number; image?: string }[] = [];
+  trainResults: { name: string; from: string; to: string; depart: string; price: number; image: string }[] = [];
 
   hotels: { name: string; location: string; price: number; image?: string }[] = [
     { name: 'Reddylton Palace', location: 'Dubai', price: 28999, image: 'images/hotel.webp' },
@@ -189,14 +196,46 @@ export class Booking {
     }, 0);
   }
 
-  saveOrder(order: any) {
-    const raw = sessionStorage.getItem('reddyfisherOrders');
-    const existing = raw ? JSON.parse(raw) : [];
-    existing.push(order);
-    sessionStorage.setItem('reddyfisherOrders', JSON.stringify(existing));
+  onSearch() {
+    this.hasSearched = true;
+
+    if (this.selectedType === 'flights') {
+      if (!this.fromPlace || !this.toPlace || !this.startDate || this.ticketCount < 1) {
+        this.snackBar.open('Complete all flight search fields before searching.', 'Close', { duration: 2000 });
+        return;
+      }
+
+      this.flightResults = this.filteredFlights;
+      this.hotelResults = [];
+      this.trainResults = [];
+      return;
+    }
+
+    if (this.selectedType === 'hotels') {
+      if (!this.hotelPlace || !this.startDate || !this.endDate || this.ticketCount < 1) {
+        this.snackBar.open('Complete all hotel search fields before searching.', 'Close', { duration: 2000 });
+        return;
+      }
+
+      this.hotelResults = this.filteredHotels;
+      this.flightResults = [];
+      this.trainResults = [];
+      return;
+    }
+
+    if (this.selectedType === 'trains') {
+      if (!this.fromPlace || !this.toPlace || !this.startDate || this.ticketCount < 1) {
+        this.snackBar.open('Complete all train search fields before searching.', 'Close', { duration: 2000 });
+        return;
+      }
+
+      this.trainResults = this.filteredTrains;
+      this.flightResults = [];
+      this.hotelResults = [];
+    }
   }
 
-  confirmBooking(type: string, name: string, basePrice: number) {
+  goToPayment(type: string, title: string, basePrice: number) {
 
     const tickets: any[] = [];
 
@@ -205,9 +244,9 @@ export class Booking {
         passenger: `Passenger ${i + 1}`,
         category: this.passengers[i].type === 'child' ? 'Child' : 'Adult',
         seat: `${String.fromCharCode(65 + i)}${10 + i}`,
-        price: this.passengers[i].type === 'child'
-          ? basePrice * 0.5
-          : basePrice
+        price: this.passengers[i].type === 'child' ? basePrice * 0.5 : basePrice,
+        name: '',
+        age: null
       });
     }
 
@@ -215,7 +254,8 @@ export class Booking {
 
     const bookingState = {
       type,
-      name,
+      title,
+      name: title,
       from: this.fromPlace,
       to: this.toPlace,
       hotelPlace: this.hotelPlace,
@@ -224,24 +264,6 @@ export class Booking {
       tickets,
       total
     };
-
-    this.saveOrder({
-      type,
-      name,
-      from: this.fromPlace,
-      to: this.toPlace,
-      hotelPlace: this.hotelPlace,
-      startDate: this.startDate,
-      endDate: this.endDate,
-      tickets: tickets.length,
-      total
-    });
-
-    sessionStorage.setItem('reddyfisherPayment', JSON.stringify(bookingState));
-
-    this.snackBar.open('Booking Successful 🎉', 'Close', {
-      duration: 2000
-    });
 
     this.router.navigate(['/payment'], {
       state: {

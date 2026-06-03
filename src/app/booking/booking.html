@@ -93,6 +93,10 @@
 
       </div>
 
+      <div class="search-action">
+        <button mat-raised-button color="primary" (click)="onSearch()">Search</button>
+      </div>
+
     </ng-container>
 
     <!-- ================= HOTELS ================= -->
@@ -198,6 +202,10 @@
 
       </div>
 
+      <div class="search-action">
+        <button mat-raised-button color="primary" (click)="onSearch()">Search</button>
+      </div>
+
     </ng-container>
 
     <!-- ================= TRAINS ================= -->
@@ -298,21 +306,25 @@
 
       </div>
 
+      <div class="search-action">
+        <button mat-raised-button color="primary" (click)="onSearch()">Search</button>
+      </div>
+
     </ng-container>
 
   </div>
 
   <!-- RIGHT PANEL -->
 
-  <div class="results-section" *ngIf="selectedType === 'flights'">
+  <div class="results-section" *ngIf="selectedType === 'flights' && hasSearched">
 
     <h2>✈ Flights</h2>
 
-    <div *ngIf="filteredFlights?.length === 0">
+    <div *ngIf="flightResults.length === 0">
       <p>No flights available for {{ fromPlace || 'selected' }} → {{ toPlace || 'selected' }}.</p>
     </div>
 
-    <mat-card class="result-card" *ngFor="let f of filteredFlights">
+    <mat-card class="result-card" *ngFor="let f of flightResults">
 
       <img [src]="f.image">
 
@@ -329,7 +341,7 @@
         <button
           mat-raised-button
           color="primary"
-          (click)="confirmBooking('flight', f.airline + ' ' + f.from + '→' + f.to, f.price)">
+          (click)="goToPayment('flight', f.airline + ' ' + f.from + '→' + f.to, f.price)">
           Book Flight
         </button>
 
@@ -339,14 +351,14 @@
 
   </div>
 
-  <div class="results-section" *ngIf="selectedType === 'hotels'">
+  <div class="results-section" *ngIf="selectedType === 'hotels' && hasSearched">
 
     <h2>🏨 Hotels</h2>
-    <div *ngIf="filteredHotels?.length === 0">
+    <div *ngIf="hotelResults.length === 0">
       <p>No hotels available for {{ hotelPlace || 'selected' }}.</p>
     </div>
 
-    <mat-card class="result-card" *ngFor="let h of filteredHotels">
+    <mat-card class="result-card" *ngFor="let h of hotelResults">
 
       <img [src]="hotelImage && hotelName === h.name ? hotelImage : (h.image || 'images/hotel.webp')">
 
@@ -368,7 +380,7 @@
         <button
           mat-raised-button
           color="accent"
-          (click)="confirmBooking('hotel', h.name, h.price)">
+          (click)="goToPayment('hotel', h.name, h.price)">
           Reserve Hotel
         </button>
 
@@ -378,15 +390,15 @@
 
   </div>
 
-  <div class="results-section" *ngIf="selectedType === 'trains'">
+  <div class="results-section" *ngIf="selectedType === 'trains' && hasSearched">
 
     <h2>🚆 Trains</h2>
 
-    <div *ngIf="filteredTrains?.length === 0">
+    <div *ngIf="trainResults.length === 0">
       <p>No trains available for {{ fromPlace || 'selected' }} → {{ toPlace || 'selected' }}.</p>
     </div>
 
-    <mat-card class="result-card" *ngFor="let t of filteredTrains">
+    <mat-card class="result-card" *ngFor="let t of trainResults">
 
       <img [src]="t.image">
 
@@ -412,7 +424,7 @@
         <button
           mat-raised-button
           color="warn"
-          (click)="confirmBooking('train', t.name, t.price)">
+          (click)="goToPayment('train', t.name, t.price)">
           Book Train
         </button>
 

@@ -229,3 +229,34 @@
     align-items: flex-start;
   }
 }
+
+
+.ticket-details-row {
+  display: flex;
+  gap: 16px;
+  margin: 16px 0;
+}
+
+.ticket-details-row mat-form-field {
+  flex: 1;
+}
+
+/* Placeholder color */
+.ticket-details-row input::placeholder {
+  color: #94a3b8;
+}
+
+/* Typed text */
+::ng-deep .ticket-details-row .mat-mdc-input-element {
+  color: white !important;
+}
+
+/* Label */
+::ng-deep .ticket-details-row .mat-mdc-floating-label {
+  color: white !important;
+}
+
+/* Label when focused */
+::ng-deep .ticket-details-row .mdc-floating-label--float-above {
+  color: white !important;
+}

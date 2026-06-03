@@ -73,9 +73,9 @@
               <div class="ticket-icon">
                 <mat-icon>
                   {{
-                  booking?.type === 'flights'
+                  booking?.type === 'flight'
                   ? 'flight'
-                  : booking?.type === 'trains'
+                  : booking?.type === 'train'
                   ? 'train'
                   : 'hotel'
                   }}
@@ -103,7 +103,19 @@
 
             </div>
 
-            <div class="ticket-price">
+            <div class="ticket-details-row">
+            <mat-form-field appearance="outline" color="accent">
+              <mat-label>Passenger Name</mat-label>
+              <input matInput [(ngModel)]="t.name" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Age</mat-label>
+              <input matInput type="number" min="1" [(ngModel)]="t.age" />
+            </mat-form-field>
+          </div>
+
+          <div class="ticket-price">
               <mat-icon>currency_rupee</mat-icon>
               {{ t.price }}
             </div>
@@ -177,9 +189,12 @@
         <button
           mat-raised-button
           class="checkout-btn"
+          color="primary"
+          (click)="confirmBooking()"
+          [disabled]="!canConfirm()"
         >
           <mat-icon>lock</mat-icon>
-          Proceed to Checkout
+          Confirm Booking
         </button>
 
       </mat-card>

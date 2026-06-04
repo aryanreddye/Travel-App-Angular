@@ -74,6 +74,10 @@ mat-toolbar {
   font-weight: bold;
 }
 
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
 /* ORDERS PANEL */
 .orders-panel {
   background: #111;

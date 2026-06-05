@@ -1,56 +1,4 @@
-<mat-sidenav-container class="sidenav-container">
 
-  <mat-sidenav #sidenav class="sidenav" mode="over">
-    <div class="sidenav-header">
-      <h2>ReddyFisher</h2>
-      <p>Travel dashboard</p>
-    </div>
-
-    <button mat-button class="sidenav-item" (click)="openSidebarOption('profile', sidenav)">
-      <mat-icon>person</mat-icon>
-      Profile
-    </button>
-
-    <button mat-button class="sidenav-item" (click)="openSidebarOption('orders', sidenav)">
-      <mat-icon>receipt_long</mat-icon>
-      Orders
-    </button>
-
-    <button mat-button class="sidenav-item" (click)="openSidebarOption('settings', sidenav)">
-      <mat-icon>settings</mat-icon>
-      Settings
-    </button>
-
-    <button mat-button class="sidenav-item" (click)="openSidebarOption('signout', sidenav)">
-      <mat-icon>logout</mat-icon>
-      Sign Out
-    </button>
-  </mat-sidenav>
-
-  <mat-sidenav-content>
-
-    <!-- TOOLBAR -->
-    <mat-toolbar class="toolbar">
-      <button mat-icon-button  (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
-
-      <span class="toolbar-title">✈ ReddyFisher Travel Dashboard</span>
-
-      <span class="toolbar-spacer"></span>
-
-      <button mat-icon-button matTooltip="Profile" (click)="openSidebarOption('profile', null)">
-        <mat-icon>person</mat-icon>
-      </button>
-
-      <button mat-icon-button matTooltip="Tickets" (click)="openSidebarOption('orders', null)">
-        <mat-icon>receipt_long</mat-icon>
-      </button>
-
-      <button mat-icon-button matTooltip="Sign Out" (click)="openSidebarOption('signout', null)">
-        <mat-icon>logout</mat-icon>
-      </button>
-    </mat-toolbar>
 
     <!-- MAIN WRAPPER -->
     <div class="dashboard">
@@ -275,6 +223,4 @@
 
 </div>
 
-  </mat-sidenav-content>
 
-</mat-sidenav-container>

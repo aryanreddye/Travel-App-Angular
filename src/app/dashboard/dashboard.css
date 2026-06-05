@@ -302,6 +302,15 @@ mat-toolbar {
   scroll-behavior: smooth;
 }
 
+.places-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.places-carousel {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 .place-card {
   min-width: 260px;
 
@@ -347,6 +356,15 @@ mat-toolbar {
   overflow-x: auto;
   padding-bottom: 10px;
   scroll-behavior: smooth;
+}
+
+.deals-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.deals-grid {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .deal-card {
@@ -412,6 +430,15 @@ mat-toolbar {
   scroll-behavior: smooth;
 }
 
+.airways-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.airways-carousel {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 .airways-card {
   min-width: 260px;
   max-width: 280px;
@@ -463,4 +490,114 @@ mat-toolbar {
   color: #555;
 
   line-height: 1.5;
+}
+
+/* FOOTER */
+.dashboard-footer {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d0c0c 100%);
+  color: #ddd;
+  padding: 40px 20px 20px;
+  margin-top: 40px;
+  border-top: 2px solid #840808;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto 30px;
+}
+
+.footer-section h4 {
+  color: #840808;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+  color: #bbb;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: 14px;
+}
+
+.footer-section ul li a:hover {
+  color: #840808;
+}
+
+.social-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(132, 8, 8, 0.2);
+  color: #840808;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  background: #840808;
+  color: white;
+  transform: translateY(-3px);
+}
+
+.social-icon mat-icon {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid rgba(132, 8, 8, 0.2);
+  padding-top: 20px;
+  color: #999;
+  font-size: 13px;
+}
+
+.footer-bottom p {
+  margin: 8px 0;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .dashboard-footer {
+    padding: 30px 15px 15px;
+  }
+
+  .social-links {
+    justify-content: flex-start;
+  }
 }

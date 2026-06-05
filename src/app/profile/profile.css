@@ -22,7 +22,9 @@
 
 .profile-avatar mat-icon {
   color: white;
-  font-size: 48px;
+  font-size: 56px;
+  width: 56px;
+  height: 56px;
 }
 
 .profile-details h1 {

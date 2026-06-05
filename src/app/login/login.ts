@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,8 @@ export class Login {
 
   constructor(
   private snackBar: MatSnackBar,
-  private router: Router
+  private router: Router,
+  private userService: UserService
 ) {}
 
   email: string = '';
@@ -56,6 +58,10 @@ export class Login {
   this.passwordvalidation();
 
   if (this.emailError === "" && this.passwordError === "") {
+    this.userService.setUserData({
+      email: this.email,
+      password: this.password
+    });
     this.router.navigate(['/dashboard']);
   }
 }
@@ -166,6 +172,12 @@ signuppasswordvalidation() {
 
   if (this.nameError == "" && this.phoneError == "" && this.signupEmailError == "" &&
     this.signupPasswordError == "") {
+      this.userService.setUserData({
+        name: this.name,
+        email: this.signupEmail,
+        phone: this.phone,
+        password: this.signupPassword
+      });
       this.router.navigate(['/dashboard']);
   }
 

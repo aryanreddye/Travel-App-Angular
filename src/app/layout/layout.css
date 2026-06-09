@@ -9,6 +9,9 @@
   color: white;
   padding: 20px 0;
 }
+button{
+  color: white;
+}
 
 .sidenav-header {
   padding: 0 20px 20px;
@@ -29,7 +32,7 @@
   width: 100%;
   justify-content: flex-start;
   gap: 12px;
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 .toolbar {

@@ -51,48 +51,80 @@
       🌍 Top Destinations by ReddyFisher
     </h2>
 
-    <div class="places-carousel">
+    <div class="carousel-wrapper">
+      <button class="carousel-arrow left-arrow" (click)="scrollCarousel('places', 'left')" mat-icon-button>
+        <mat-icon>chevron_left</mat-icon>
+      </button>
 
-      <mat-card class="place-card" (click)="openDestination('Dubai')" style="cursor: pointer;">
-        <img src="images/dubai.jpg">
-        <div class="place-info">
-          <h3>Dubai</h3>
-          <p>Luxury shopping & skyline</p>
-        </div>
-      </mat-card>
+      <div class="places-carousel" #placesCarousel>
+        <mat-card class="place-card" (click)="openDestination('Dubai')" style="cursor: pointer;">
+          <img src="images/dubai.jpg">
+          <div class="place-info">
+            <h3>Dubai</h3>
+            <p>Luxury shopping & skyline</p>
+          </div>
+        </mat-card>
 
-      <mat-card class="place-card" (click)="openDestination('Paris')" style="cursor: pointer;">
-        <img src="images/paris.jpg">
-        <div class="place-info">
-          <h3>Paris</h3>
-          <p>City of Lights & Romance</p>
-        </div>
-      </mat-card>
+        <mat-card class="place-card" (click)="openDestination('Paris')" style="cursor: pointer;">
+          <img src="images/paris.jpg">
+          <div class="place-info">
+            <h3>Paris</h3>
+            <p>City of Lights & Romance</p>
+          </div>
+        </mat-card>
 
-      <mat-card class="place-card" (click)="openDestination('Goa')" style="cursor: pointer;">
-        <img src="images/goa.jpg">
-        <div class="place-info">
-          <h3>Goa</h3>
-          <p>Beaches & nightlife</p>
-        </div>
-      </mat-card>
+        <mat-card class="place-card" (click)="openDestination('Goa')" style="cursor: pointer;">
+          <img src="images/goa.jpg">
+          <div class="place-info">
+            <h3>Goa</h3>
+            <p>Beaches & nightlife</p>
+          </div>
+        </mat-card>
 
-      <mat-card class="place-card" (click)="openDestination('Tokyo')" style="cursor: pointer;">
-        <img src="images/tokyo.jpg">
-        <div class="place-info">
-          <h3>Tokyo</h3>
-          <p>Future meets tradition</p>
-        </div>
-      </mat-card>
+        <mat-card class="place-card" (click)="openDestination('Tokyo')" style="cursor: pointer;">
+          <img src="images/tokyo.jpg">
+          <div class="place-info">
+            <h3>Tokyo</h3>
+            <p>Future meets tradition</p>
+          </div>
+        </mat-card>
 
-      <mat-card class="place-card" (click)="openDestination('Bali')" style="cursor: pointer;">
-        <img src="images/bali.jpg">
-        <div class="place-info">
-          <h3>Bali</h3>
-          <p>Tropical paradise</p>
-        </div>
-      </mat-card>
+        <mat-card class="place-card" (click)="openDestination('Bali')" style="cursor: pointer;">
+          <img src="images/bali.jpg">
+          <div class="place-info">
+            <h3>Bali</h3>
+            <p>Tropical paradise</p>
+          </div>
+        </mat-card>
 
+        <mat-card class="place-card" (click)="openDestination('Amsterdam')" style="cursor: pointer;">
+          <img src="images/amsterdam.jpg">
+          <div class="place-info">
+            <h3>Amsterdam</h3>
+            <p>Canals & cycling tours</p>
+          </div>
+        </mat-card>
+
+        <mat-card class="place-card" (click)="openDestination('Barcelona')" style="cursor: pointer;">
+          <img src="images/barcelona.jpg">
+          <div class="place-info">
+            <h3>Barcelona</h3>
+            <p>Architecture & beach life</p>
+          </div>
+        </mat-card>
+
+        <mat-card class="place-card" (click)="openDestination('New York')" style="cursor: pointer;">
+          <img src="images/newyork.jpg">
+          <div class="place-info">
+            <h3>New York</h3>
+            <p>The City That Never Sleeps</p>
+          </div>
+        </mat-card>
+      </div>
+
+      <button class="carousel-arrow right-arrow" (click)="scrollCarousel('places', 'right')" mat-icon-button>
+        <mat-icon>chevron_right</mat-icon>
+      </button>
     </div>
   </div>
 
@@ -103,70 +135,113 @@
       💸 ReddyFisher Exclusive Deals
     </h2>
 
-    <div class="deals-grid">
+    <div class="carousel-wrapper">
+      <button class="carousel-arrow left-arrow" (click)="scrollCarousel('deals', 'left')" mat-icon-button>
+        <mat-icon>chevron_left</mat-icon>
+      </button>
 
-      <mat-card class="deal-card" (click)="openDealHotel('Dubai Sky Resort','Dubai','images/dubai_resort.webp')">
-        <img src="images/dubai_resort.webp">
-        <div class="deal-card-content">
-          <h3>Dubai Sky Resort</h3>
-          <p>5-star hotel stay with skyline views</p>
-          <h2>₹28,999</h2>
-          <small>Hotel Deal</small>
-        </div>
-      </mat-card>
+      <div class="deals-grid" #dealsCarousel>
+        <mat-card class="deal-card" (click)="openDealHotel('Dubai Sky Resort','Dubai','images/dubai_resort.webp')">
+          <img src="images/dubai_resort.webp">
+          <div class="deal-card-content">
+            <h3>Dubai Sky Resort</h3>
+            <p>5-star hotel stay with skyline views</p>
+            <h2>₹28,999</h2>
+            <small>Hotel Deal</small>
+          </div>
+        </mat-card>
 
-      <mat-card class="deal-card" (click)="openDealHotel('Goa Beach Retreat','Goa','images/goa_resort.jpg')">
-        <img src="images/goa_resort.jpg">
-        <div class="deal-card-content">
-          <h3>Goa Beach Retreat</h3>
-          <p>Sea-facing rooms & sunset dining</p>
-          <h2>₹11,999</h2>
-          <small>Hotel Deal</small>
-        </div>
-      </mat-card>
+        <mat-card class="deal-card" (click)="openDealHotel('Goa Beach Retreat','Goa','images/goa_resort.jpg')">
+          <img src="images/goa_resort.jpg">
+          <div class="deal-card-content">
+            <h3>Goa Beach Retreat</h3>
+            <p>Sea-facing rooms & sunset dining, Perfect for a getaway</p>
+            <h2>₹11,999</h2>
+            <small>Hotel Deal</small>
+          </div>
+        </mat-card>
 
-      <mat-card class="deal-card" (click)="openDealHotel('Parisian Suite','Paris','images/paris_resorty.jpg')">
-        <img src="images/paris_resorty.jpg">
-        <div class="deal-card-content">
-          <h3>Parisian Suite</h3>
-          <p>Romantic hotel escape near the Seine</p>
-          <h2>₹44,999</h2>
-          <small>Hotel Deal</small>
-        </div>
-      </mat-card>
+        <mat-card class="deal-card" (click)="openDealHotel('Parisian Suite','Paris','images/paris_resorty.jpg')">
+          <img src="images/paris_resorty.jpg">
+          <div class="deal-card-content">
+            <h3>Parisian Suite</h3>
+            <p>Romantic hotel escape near the Seine</p>
+            <h2>₹44,999</h2>
+            <small>Hotel Deal</small>
+          </div>
+        </mat-card>
 
-      <mat-card class="deal-card" (click)="openDealHotel('Bali Villa Stay','Bali','images/bali_resort.png')">
-        <img src="images/bali_resort.png">
-        <div class="deal-card-content">
-          <h3>Bali Villa Stay</h3>
-          <p>Private pool villa with tropical dining</p>
-          <h2>₹23,999</h2>
-          <small>Hotel Deal</small>
-        </div>
-      </mat-card>
+        <mat-card class="deal-card" (click)="openDealHotel('Bali Villa Stay','Bali','images/bali_resort.png')">
+          <img src="images/bali_resort.png">
+          <div class="deal-card-content">
+            <h3>Bali Villa Stay</h3>
+            <p>Private pool villa with tropical dining</p>
+            <h2>₹23,999</h2>
+            <small>Hotel Deal</small>
+          </div>
+        </mat-card>
 
-      <mat-card class="deal-card" (click)="openDealHotel('Bali Water Villa','Bali','images/bali.jpg')">
-        <img src="images/bali.jpg">
-        <div class="deal-card-content">
-          <h3>Bali Water Villa</h3>
-          <p>Overwater bungalow with beach access</p>
-          <h2>₹79,999</h2>
-          <small>Hotel Deal</small>
-        </div>
-      </mat-card>
+        <mat-card class="deal-card" (click)="openDealHotel('Bali Water Villa','Bali','images/bali.jpg')">
+          <img src="images/bali.jpg">
+          <div class="deal-card-content">
+            <h3>Bali Water Villa</h3>
+            <p>Overwater bungalow with beach access</p>
+            <h2>₹79,999</h2>
+            <small>Hotel Deal</small>
+          </div>
+        </mat-card>
 
-      <mat-card class="deal-card" (click)="openDealHotel('Tokyo Comfort Stay','Tokyo','images/tokyo.jpg')">
-        <img src="images/tokyo.jpg">
-        <div class="deal-card-content">
-          <h3>Tokyo Comfort Stay</h3>
-          <p>Central hotel close to city highlights</p>
-          <h2>₹32,999</h2>
-          <small>Hotel Deal</small>
-        </div>
-      </mat-card>
+        <mat-card class="deal-card" (click)="openDealHotel('Tokyo Comfort Stay','Tokyo','images/tokyo.jpg')">
+          <img src="images/tokyo.jpg">
+          <div class="deal-card-content">
+            <h3>Tokyo Comfort Stay</h3>
+            <p>Central hotel close to city highlights</p>
+            <h2>₹32,999</h2>
+            <small>Hotel Deal</small>
+          </div>
+        </mat-card>
 
+        <mat-card class="deal-card" (click)="openDealHotel('Amsterdam Canal House','Amsterdam','images/amsterdam.jpg')">
+          <img src="images/amsterdam.jpg">
+          <div class="deal-card-content">
+            <h3>Amsterdam Canal House</h3>
+            <p>Charming 17th-century hotel by the canals</p>
+            <h2>₹25,999</h2>
+            <small>Hotel Deal</small>
+          </div>
+        </mat-card>
+
+        <mat-card class="deal-card" (click)="openDealHotel('Barcelona Beachfront','Barcelona','images/barcelona.jpg')">
+          <img src="images/barcelona.jpg">
+          <div class="deal-card-content">
+            <h3>Barcelona Beachfront</h3>
+            <p>Modern hotel with direct beach access</p>
+            <h2>₹36,999</h2>
+            <small>Hotel Deal</small>
+          </div>
+        </mat-card>
+
+        <mat-card class="deal-card" (click)="openDealHotel('Times Square View','New York','images/newyork.jpg')">
+          <img src="images/newyork.jpg">
+          <div class="deal-card-content">
+            <h3>Times Square View</h3>
+            <p>Iconic luxury hotel in the heart of NYC</p>
+            <h2>₹52,999</h2>
+            <small>Hotel Deal</small>
+          </div>
+        </mat-card>
+      </div>
+
+      <button class="carousel-arrow right-arrow" (click)="scrollCarousel('deals', 'right')" mat-icon-button>
+        <mat-icon>chevron_right</mat-icon>
+      </button>
     </div>
   </div>
+  
+
+
+  
+
 
   <!-- AIRWAYS -->
   <div class="section">
@@ -283,5 +358,4 @@
   </footer>
 
 </div>
-
 

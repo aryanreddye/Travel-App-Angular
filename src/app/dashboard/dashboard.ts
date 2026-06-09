@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -30,6 +30,24 @@ import { RouterModule, Router } from '@angular/router';
 export class Dashboard {
 
   constructor(private router: Router) {}
+
+  scrollCarousel(carouselType: string, direction: string) {
+    const carouselRef = carouselType === 'places' ? this.placesCarousel : this.dealsCarousel;
+    
+    if (!carouselRef) return;
+
+    const scrollAmount = 300;
+    const element = carouselRef.nativeElement;
+
+    if (direction === 'left') {
+      element.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    } else if (direction === 'right') {
+      element.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  }
+
+  @ViewChild('placesCarousel') placesCarousel: any;
+  @ViewChild('dealsCarousel') dealsCarousel: any;
 
   openSidebarOption(option: string, sidenav: any) {
     switch (option) {

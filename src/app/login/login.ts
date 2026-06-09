@@ -10,6 +10,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
+import {
+  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +24,7 @@ import { UserService } from '../user.service';
   styleUrl: './login.css'
 })
 export class Login {
+  auth = getAuth();
 
   constructor(
   private snackBar: MatSnackBar,
@@ -58,14 +61,43 @@ export class Login {
   this.passwordvalidation();
 
   if (this.emailError === "" && this.passwordError === "") {
-    this.userService.setUserData({
-      email: this.email,
-      password: this.password
+
+    signInWithEmailAndPassword(
+      this.auth,
+      this.email,
+      this.password
+    )
+
+    .then((userCredential) => {
+
+      this.userService.setUserData({
+        email: this.email
+      });
+
+      this.router.navigate(['/dashboard']);
+
+      this.snackBar.open(
+        'Login Successful',
+        'Close',
+        { duration: 3000 }
+      );
+
+      console.log(userCredential.user);
+
+    })
+
+    .catch((error) => {
+
+      this.snackBar.open(
+        error.message,
+        'Close',
+        { duration: 5000 }
+      );
+
     });
-    this.router.navigate(['/dashboard']);
+
   }
 }
-
 
   emailvalidation() {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -163,23 +195,56 @@ signuppasswordvalidation() {
 }
 
 
-  signup() {
+ signup() {
 
   this.namevalidation();
   this.phonevalidation();
   this.signupemailvalidation();
   this.signuppasswordvalidation();
 
-  if (this.nameError == "" && this.phoneError == "" && this.signupEmailError == "" &&
-    this.signupPasswordError == "") {
+  if (
+    this.nameError === "" &&
+    this.phoneError === "" &&
+    this.signupEmailError === "" &&
+    this.signupPasswordError === ""
+  ) {
+
+    createUserWithEmailAndPassword(
+      this.auth,
+      this.signupEmail,
+      this.signupPassword
+    )
+
+    .then((userCredential) => {
+
       this.userService.setUserData({
         name: this.name,
-        email: this.signupEmail,
         phone: this.phone,
-        password: this.signupPassword
+        email: this.signupEmail
       });
-      this.router.navigate(['/dashboard']);
-  }
 
+      this.router.navigate(['/dashboard']);
+
+      this.snackBar.open(
+        'Signup Successful',
+        'Close',
+        { duration: 3000 }
+      );
+
+      console.log(userCredential.user);
+
+    })
+
+    .catch((error) => {
+
+      this.snackBar.open(
+        error.message,
+        'Close',
+        { duration: 5000 }
+      );
+
+    });
+
+  }
 }
 }

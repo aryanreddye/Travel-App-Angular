@@ -10,8 +10,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
-import {
-  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
+import { auth, db} from '../firebase';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,8 @@ import {
   styleUrl: './login.css'
 })
 export class Login {
-  auth = getAuth();
+  auth = auth;
+  db = db;
 
   constructor(
   private snackBar: MatSnackBar,
@@ -69,6 +71,8 @@ export class Login {
     )
 
     .then((userCredential) => {
+      console.log(userCredential);
+      console.log(userCredential.user.uid);
 
       this.userService.setUserData({
         email: this.email
@@ -215,13 +219,28 @@ signuppasswordvalidation() {
       this.signupPassword
     )
 
-    .then((userCredential) => {
+    .then(async (userCredential) => {
 
-      this.userService.setUserData({
-        name: this.name,
-        phone: this.phone,
-        email: this.signupEmail
-      });
+  const uid = userCredential.user.uid;
+
+  console.log(uid);
+
+  await setDoc(
+    doc(this.db, 'users', uid),
+    {
+      name: this.name,
+      phone: this.phone,
+      email: this.signupEmail
+    }
+  );
+
+  console.log('User data stored in Firestore');
+
+  this.userService.setUserData({
+    name: this.name,
+    phone: this.phone,
+    email: this.signupEmail
+  });
 
       this.router.navigate(['/dashboard']);
 
